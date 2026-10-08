@@ -123,6 +123,11 @@ Launch **FocusTube** from your application menu, or run `focustube` from a termi
 > Standard Electron runtime dependencies are declared (`libgtk-3-0`, `libnss3`, `libasound2`, …);
 > `apt install -f` will pull any that are missing.
 
+> **Troubleshooting:** if `focustube` exits with *"The SUID sandbox helper binary
+> was found, but is not configured correctly"* (Ubuntu 24.04+), the setuid bit on
+> the sandbox helper was lost — restore it once with
+> `sudo chmod 4755 /opt/FocusTube/chrome-sandbox`.
+
 ### AppImage / source
 
 Run everything from source (below), or add more pack targets by extending the `linux.target` array in `package.json`.

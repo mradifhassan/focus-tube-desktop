@@ -3,6 +3,19 @@
 All notable changes to **FocusTube** are documented here. Adheres loosely to
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Semver until 1.0: 0.x.
 
+## [2.4.1] - 2026-10-09
+
+### Fixed
+
+- **App aborts at launch on Ubuntu 24.04** with
+  `The SUID sandbox helper binary was found, but is not configured correctly`.
+  The package's postinstall script probed user namespaces with `unshare --user`
+  — which always succeeds when run as root — and kept `chrome-sandbox` at
+  mode 0755, but Ubuntu 24.04's AppArmor blocks unprivileged user namespaces at
+  runtime, so Chromium needs the setuid helper. The helper is now always
+  installed owned by root with mode 4755 on every install/upgrade. Existing
+  installs: `sudo chmod 4755 /opt/FocusTube/chrome-sandbox`.
+
 ## [2.4.0] - 2026-10-09
 
 ### Performance
