@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Not Found - FocusTube</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#0f0f0f" />
+  <style>
+    body {
+      margin: 0; padding: 0;
+      background: #0f0f0f; color: #f1f1f1;
+      font-family: Roboto, sans-serif;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh; text-align: center;
+    }
+    .box { max-width: 400px; padding: 2rem; }
+    h1 { font-size: 4rem; margin: 0; color: #3ea6ff; }
+    p { color: #aaa; margin: 0.5rem 0 1.5rem; }
+    a {
+      display: inline-block; padding: 0.7rem 2rem;
+      background: #3ea6ff; color: #000; font-weight: 700;
+      border-radius: 9999px; text-decoration: none;
+      transition: background 0.15s;
+    }
+    a:hover { background: #65bbf7; }
+  </style>
+  <!-- Redirect SPA routes back to root so the client router can handle them -->
+  <script>
+    (function() {
+      var path = window.location.pathname;
+      var root = '/focus-tube/';
+      if (path.startsWith(root)) {
+        var hash = '#' + path.slice(root.length - 1);
+        window.location.replace(root + hash);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div class="box">
+    <h1>404</h1>
+    <p>Page not found. If you followed a link, it may be a client-side route — <a href="/focus-tube/">go home</a> and navigate from there.</p>
+    <a href="/focus-tube/">Back to FocusTube</a>
+  </div>
+</body>
+</html>

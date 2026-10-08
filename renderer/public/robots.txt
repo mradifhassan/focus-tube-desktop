@@ -1,0 +1,25 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# All search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+# Disallow admin/build paths
+Disallow: /assets/
+Disallow: /src/
+
+Sitemap: https://mradifhassan.github.io/focus-tube/sitemap.xml

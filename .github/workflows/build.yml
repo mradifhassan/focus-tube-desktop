@@ -1,0 +1,59 @@
+name: Build Debian Package
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            renderer/package-lock.json
+
+      - name: Install shell dependencies
+        run: npm ci
+
+      - name: Install renderer dependencies
+        working-directory: renderer
+        run: npm ci
+
+      - name: Build renderer (web app -> app/)
+        run: npm run build:renderer
+
+      - name: Package Linux .deb
+        run: npx electron-builder --linux deb
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: focustube-linux-deb
+          path: |
+            dist/*.deb
+          if-no-files-found: error
+
+      - name: Draft release (tag pushes only)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.deb
+          draft: true
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

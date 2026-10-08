@@ -1,0 +1,67 @@
+{
+  "name": "focus-tube-desktop",
+  "productName": "FocusTube",
+  "version": "2.0.0",
+  "description": "FocusTube — a free, distraction-free YouTube desktop client built for HSC students in Bangladesh. Curated educational videos from OnnoRokom Pathshala, Alchemy, and AloronXYZ. No ads, no algorithmic recommendations.",
+  "main": "main.js",
+  "author": "Radif Hassan <radif@example.com>",
+  "license": "AGPL-3.0",
+  "homepage": "https://github.com/mradifhassan/focus-tube-desktop",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mradifhassan/focus-tube-desktop.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mradifhassan/focus-tube-desktop/issues"
+  },
+  "scripts": {
+    "build:renderer": "sh scripts/build-renderer.sh",
+    "start": "electron .",
+    "build": "npm run build:renderer && electron-builder --linux deb",
+    "package": "npm run build:renderer && electron-builder --linux"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.focustube.desktop",
+    "productName": "FocusTube",
+    "files": [
+      "main.js",
+      "package.json",
+      "build/icon.png"
+    ],
+    "extraResources": [
+      {
+        "from": "app",
+        "to": "app"
+      }
+    ],
+    "linux": {
+      "target": [
+        "deb"
+      ],
+      "icon": "build/icon.png",
+      "category": "Education",
+      "synopsis": "FocusTube — distraction-free YouTube client",
+      "description": "A free, distraction-free YouTube client for HSC students in Bangladesh. Browse curated educational videos from OnnoRokom Pathshala, Alchemy, and AloronXYZ — no ads, no recommendations, just focused learning.",
+      "maintainer": "Radif Hassan <radif@example.com>"
+    },
+    "deb": {
+      "priority": "optional",
+      "depends": [
+        "libgtk-3-0",
+        "libnotify4",
+        "libnss3",
+        "libxss1",
+        "libxtst6",
+        "xdg-utils",
+        "libatspi2.0-0",
+        "libuuid1",
+        "libsecret-1-0",
+        "libasound2"
+      ]
+    }
+  }
+}

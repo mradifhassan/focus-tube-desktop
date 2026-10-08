@@ -1,0 +1,16 @@
+{
+  "name": "FocusTube",
+  "short_name": "FocusTube",
+  "description": "Distraction-free YouTube client for HSC students in Bangladesh",
+  "start_url": "https://mradifhassan.github.io/focus-tube/",
+  "display": "standalone",
+  "background_color": "#0f0f0f",
+  "theme_color": "#0f0f0f",
+  "icons": [
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
