@@ -78,7 +78,7 @@ on Ubuntu find the same experience here.
 ### macOS (Apple Silicon / Intel) — `.dmg`
 
 1. Download **`FocusTube-<version>-arm64.dmg`** (Apple Silicon) or
-   **`FocusTube-<version>-x64.dmg`** (Intel) from the
+   **`FocusTube-<version>.dmg`** (Intel) from the
    [Releases page](https://github.com/mradifhassan/focus-tube-desktop/releases).
 2. Double-click the `.dmg` and drag **FocusTube** into your **Applications** folder.
 3. First launch only: because the app is not notarized, right-click **FocusTube** in
@@ -137,7 +137,7 @@ npm ci --prefix renderer
 # 3) Build the renderer, then package your platform's installer
 npm run build        # Linux    → dist/*.deb          (also updates the APT repo)
 npm run build:win    # Windows  → dist/FocusTube-Setup-*.exe
-npm run build:mac    # macOS    → dist/FocusTube-*-{arm64,x64}.dmg
+npm run build:mac    # macOS    → dist/FocusTube-*-arm64.dmg and dist/FocusTube-*.dmg
 ```
 
 That's the exact pipeline GitHub Actions runs. The installer lands in `dist/`. For daily use without packaging:
