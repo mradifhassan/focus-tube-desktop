@@ -1,7 +1,7 @@
 {
   "name": "focus-tube-desktop",
   "productName": "FocusTube",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "FocusTube — a free, distraction-free YouTube desktop client built for HSC students in Bangladesh. Curated educational videos from OnnoRokom Pathshala, Alchemy, and AloronXYZ. No ads, no algorithmic recommendations.",
   "main": "main.js",
   "author": "Radif Hassan <radif@example.com>",
@@ -22,18 +22,33 @@
     "build:mac": "npm run build:renderer && electron-builder --mac dmg",
     "package": "npm run build:renderer && electron-builder --linux"
   },
+  "dependencies": {
+    "@capacitor/app": "^7.0.1",
+    "@capacitor/browser": "^7.0.1",
+    "@capacitor/core": "^7.0.1",
+    "electron-updater": "^6.3.9"
+  },
   "devDependencies": {
+    "@capacitor/android": "^7.0.1",
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^7.0.1",
     "electron": "^33.0.0",
     "electron-builder": "^25.1.8"
   },
   "build": {
     "appId": "com.focustube.desktop",
     "productName": "FocusTube",
-    "publish": null,
+    "publish": {
+      "provider": "github",
+      "owner": "mradifhassan",
+      "repo": "focus-tube-desktop",
+      "releaseType": "release"
+    },
     "files": [
       "main.js",
       "package.json",
-      "build/icon.png"
+      "build/icon.png",
+      "node_modules"
     ],
     "extraResources": [
       {

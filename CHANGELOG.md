@@ -3,6 +3,18 @@
 All notable changes to **FocusTube** are documented here. Adheres loosely to
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Semver until 1.0: 0.x.
 
+## [2.3.0] - 2026-10-09
+
+### Added
+
+- **Windows auto-update** — `electron-updater` checks GitHub Releases at launch (and every 4 h),
+  prompts, downloads, and installs the new build; `latest.yml` metadata is published.
+- **macOS & Linux "Check for Updates…"** menu item — queries the GitHub Releases API and opens
+  the download page when a newer version exists (macOS auto-install still needs paid Apple signing).
+- **Android app** — native APK via Capacitor (bundles the offline-capable renderer), built and
+  signed in CI, with an in-app "update available" banner.
+- README install/update documentation for every platform.
+
 ## [2.2.0] - 2026-10-09
 
 ### Added

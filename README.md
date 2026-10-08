@@ -14,7 +14,7 @@
 No ads. No algorithmic recommendations. No comments. Just curated HSC curriculum videos from
 [OnnoRokom Pathshala](https://www.youtube.com/@onnorokompathshala), Alchemy, and AloronXYZ — wrapped in a clean desktop window.
 
-*Built with Electron. A sibling of the [FocusTube web app](https://github.com/mradifhassan/focus-tube).*
+*Built with Electron (desktop) and Capacitor (Android). A sibling of the [FocusTube web app](https://github.com/mradifhassan/focus-tube).*
 
 ![FocusTube preview](docs/preview.png)
 
@@ -25,7 +25,7 @@ No ads. No algorithmic recommendations. No comments. Just curated HSC curriculum
 ## Features
 
 - **Curated distraction-free catalog** — 998+ hand-picked HSC videos and 60 playlists bundled offline; nothing is algorithmically recommended.
-- **Native desktop window** — installs as a `.deb` (Linux), `.exe` installer (Windows), or `.dmg` (macOS); on Debian/Ubuntu it launches from your app menu with `Categories=Education`.
+- **Native app everywhere** — installs as a `.deb` (Linux), `.exe` installer (Windows), `.dmg` (macOS), or `.apk` (Android); Debian/Ubuntu launches from the app menu with `Categories=Education`.
 - **Privacy shield** — Invidious instances for channel metadata, `youtube-nocookie.com` embeds, no tracking cookies, no account.
 - **Playlist autoplay** — a native-style queue with repeat / shuffle / autoplay while you study.
 - **Offline-first catalogs** — the full OnnoRokom / Alchemy / AloronXYZ indexes ship with the app and render instantly; only video playback and Live channel fetch need the network.
@@ -63,13 +63,17 @@ The repository is served from GitHub Pages, signed with the **FocusTube Release 
 ([`focustube.asc`](https://mradifhassan.github.io/focus-tube-desktop/focustube.asc)); Snap/PPA users
 on Ubuntu find the same experience here.
 
-### Windows (x64) — `.exe` installer
+### Windows (x64) — `.exe` installer with auto-update
 
 1. Download **`FocusTube-Setup-<version>.exe`** from the
    [Releases page](https://github.com/mradifhassan/focus-tube-desktop/releases).
 2. Double-click the installer. Choose the default install location or a folder of your own
    (the installer lets you pick either).
 3. Launch **FocusTube** from the Start menu or the desktop shortcut.
+
+**Updates install themselves:** on every launch (and every 4 hours while running) FocusTube
+checks GitHub for a newer release, shows a prompt when one is available, then downloads and
+installs it in the background. Nothing to do — just say "Download & install now".
 
 > The installer is unsigned for now, so Windows SmartScreen may show a
 > "Windows protected your PC" prompt. Click **More info → Run anyway**. FocusTube is
@@ -84,19 +88,24 @@ on Ubuntu find the same experience here.
 3. First launch only: because the app is not notarized, right-click **FocusTube** in
    Finder → **Open**, then confirm **Open** — Gatekeeper won't block it afterwards.
 
-### Android — the web app, as an installable app
+For updates, use the menu bar **Help → Check for Updates…** — it queries GitHub and opens the
+download page when a newer version is out. (Full auto-update isn't possible with free/unpaid
+signing; Apple Developer ID signing + notarization would unlock it.)
 
-There is no Android APK yet, but the [FocusTube web app](https://mradifhassan.github.io/focus-tube/)
-_is_ fully mobile-optimized. In Chrome (Android) it installs like a native app with its own
-launcher icon:
+### Android — native APK (`.apk`)
 
-1. Open <https://mradifhassan.github.io/focus-tube/> in Chrome.
-2. Tap **⋮ (Menu) → Add to Home screen** (or **Install app / Install page**).
-3. Confirm **Install** — FocusTube and its icon appear on your home screen and launch
-   fullscreen, just like an app.
+1. Download **`FocusTube-<version>.apk`** from the
+   [Releases page](https://github.com/mradifhassan/focus-tube-desktop/releases).
+2. Open the file and tap through Android's "install from unknown sources" prompt.
+3. **FocusTube** launches from your launcher with its own icon.
 
-That gives every HSC student with any Android phone the full distraction-free catalog without
-an install. A native APK build is a planned follow-up.
+The app itself — catalogs, search, playlist autoplay — is bundled offline. When a new version
+is published, an **"update available"** banner appears in the app and opens the download page.
+
+> Prefer the web version on Android? Open
+> <https://mradifhassan.github.io/focus-tube/> in Chrome and choose
+> **⋮ → Add to Home screen**. That installs with a launcher icon too and updates itself
+> automatically, no download needed.
 
 ### Manual `.deb`
 
@@ -138,6 +147,9 @@ npm ci --prefix renderer
 npm run build        # Linux    → dist/*.deb          (also updates the APT repo)
 npm run build:win    # Windows  → dist/FocusTube-Setup-*.exe
 npm run build:mac    # macOS    → dist/FocusTube-*-arm64.dmg and dist/FocusTube-*.dmg
+# Android: needs JDK 17 + Android SDK
+npm run build:renderer && npx cap sync android
+cd android && ./gradlew assembleRelease   # → app-release.apk (unsigned without a keystore)
 ```
 
 That's the exact pipeline GitHub Actions runs. The installer lands in `dist/`. For daily use without packaging:
@@ -150,18 +162,20 @@ npm start        # (after npm run build:renderer)
 
 ```
 focus-tube-desktop/
-├── main.js                  # Electron main process — loopback server + window
+├── main.js                  # Electron main process — loopback server + window + updaters
+├── capacitor.config.ts      # Capacitor config (webDir=app) for the Android app
+├── android/                 # Android app project (Gradle) — same bundled renderer
 ├── scripts/
 │   ├── build-renderer.sh    # builds the renderer into app/ (relative asset base)
 │   └── apt-repo.sh          # builds + signs the APT repo from dist/*.deb
 ├── renderer/                # the FocusTube web app source (own package.json)
-│   ├── src/                 # views, router, player, catalogs (OnnoRokom, Alchemy, AloronXYZ)
+│   ├── src/                 # views, router, player, catalogs, updater (Android banner)
 │   ├── public/              # web manifest, icons, SEO files
 │   └── vite.config.ts
 ├── app/                     # generated renderer build (served at runtime; not committed)
 ├── apt-repo/                # generated APT repository (published to GitHub Pages)
 ├── build/icon.png           # 512×512 application icon
-└── .github/workflows/       # CI — .deb/.exe/.dmg builds, GitHub Releases, APT repo + Pages
+└── .github/workflows/       # CI — .deb/.exe/.dmg/.apk builds, releases, APT repo + Pages
 ```
 
 ## How it works under the hood
@@ -175,11 +189,12 @@ Invidious/oEmbed fetches, which reject the `file://` "null" origin that a plain
 
 | Layer      | Tech                                                              |
 |------------|-------------------------------------------------------------------|
-| Shell      | [Electron](https://www.electronjs.org/) 33                        |
+| Shell      | [Electron](https://www.electronjs.org/) 33 (desktop) · [Capacitor](https://capacitorjs.com/) 7 (Android) |
 | Renderer   | Vanilla ES modules + Vite, Tailwind CSS (via CDN), YouTube IFrame API |
 | Metadata   | Invidious public instances, YouTube oEmbed                        |
-| Packaging  | [electron-builder](https://www.electron.build/) → `.deb` · `.exe` · `.dmg` |
-| Distribution | APT repository on GitHub Pages (GPG-signed `dists/stable`) + GitHub Releases (.deb/.exe/.dmg) |
+| Packaging  | [electron-builder](https://www.electron.build/) → `.deb` · `.exe` · `.dmg`, Android Gradle → `.apk` |
+| Updates    | Windows `electron-updater` (auto) · Debian `apt` · macOS `Check for Updates…` menu · Android in-app banner |
+| Distribution | APT repository on GitHub Pages (GPG-signed `dists/stable`) + GitHub Releases (.deb/.exe/.dmg/.apk) |
 
 ## Contributing
 
