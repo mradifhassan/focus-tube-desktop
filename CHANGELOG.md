@@ -3,6 +3,17 @@
 All notable changes to **FocusTube** are documented here. Adheres loosely to
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Semver until 1.0: 0.x.
 
+## [2.3.1] - 2026-10-09
+
+### Fixed
+
+- **Debian package: app "not opening" via terminal.** electron-builder named the
+  packaged binary `focus-tube-desktop`, but created a `/usr/bin/focustube`
+  alternatives symlink pointing to `/opt/FocusTube/focustube` — a dangling link,
+  so running `focustube` failed. The executable is now correctly installed as
+  `/opt/FocusTube/focustube`, so both the `focustube` command and the app-menu
+  entry launch the app.
+
 ## [2.3.0] - 2026-10-09
 
 ### Added
