@@ -162,8 +162,8 @@ jobs:
       - name: Build renderer (web app -> app/)
         run: npm run build:renderer
 
-      - name: Package macOS app (.dmg)
-        run: npx electron-builder --mac dmg
+      - name: Package macOS apps (.dmg, x64 + arm64)
+        run: npx electron-builder --mac dmg --x64 --arm64
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: "false"
 
