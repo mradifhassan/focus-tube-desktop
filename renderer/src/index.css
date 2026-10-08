@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 @import "tailwindcss";
 
+/* Explicit Tailwind v4 sources: auto-detection alone misses class names that
+   only ever appear inside template literals in the JS views, and index.css is
+   no longer routed through the CDN compiler — utilities must be compiled here. */
+@source "../index.html";
+@source "./**/*.{js,cjs,mjs}";
+
 @theme {
   --font-sans: "Roboto", Arial, sans-serif;
 }

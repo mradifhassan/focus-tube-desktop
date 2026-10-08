@@ -12,10 +12,16 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { autoUpdater } = require('electron-updater');
 
-// The GPU/compositor process is unreliable on some Linux/Wayland setups and
-// crashes shortly after launch ("GPU process isn't usable. Goodbye"), taking
-// the whole app with it. Software rendering is plenty for a video-viewer UI.
-app.disableHardwareAcceleration();
+// The GPU/compositor process crashes under Chromium's native Wayland backend on
+// some setups shortly after launch ("GPU process isn't usable. Goodbye"), taking
+// the whole app with it. XWayland exposes a working X11/EGL path even when
+// native Wayland GPU fails, so route Linux/Wayland sessions through it. That
+// keeps hardware acceleration (snappy UI, smooth video compositing) on machines
+// where the Wayland GPU backend is broken — software-only rendering previously
+// made every click/scroll sluggish (SwiftShader software rasterization).
+if (process.platform === 'linux' && process.env.XDG_SESSION_TYPE === 'wayland') {
+  app.commandLine.appendSwitch('ozone-platform', 'x11');
+}
 
 const DEFAULT_PORT = 18732;
 

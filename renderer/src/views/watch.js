@@ -152,7 +152,7 @@ export const watchViewMixin = {
                     <div data-related-vid="${id}" data-ch="${v.channelId || vid.channelId}" data-in-playlist="true" class="flex gap-3 p-2.5 items-center cursor-pointer group ${active ? 'bg-[#3f3f3f]' : 'hover:bg-[#272727]'}">
                       <span class="w-5 text-center text-xs font-mono shrink-0 ${active ? 'text-[#3ea6ff]' : 'text-[#888]'}">${active ? '&#9654;' : i + 1}</span>
                       <div class="relative w-28 aspect-video rounded-lg overflow-hidden bg-[#222] shrink-0">
-                        <img src="${v.thumbnail || ''}" alt="${v.title}" class="w-full h-full object-cover group-hover:scale-105 transition" />
+                        <img src="${v.thumbnail || ''}" alt="${v.title}" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition" />
                         <span class="absolute bottom-0.5 right-0.5 px-1 rounded bg-black/80 text-white text-[9px] font-mono">${v.duration || ''}</span>
                       </div>
                       <div class="flex flex-col gap-0.5 flex-1 min-w-0">
@@ -175,7 +175,7 @@ export const watchViewMixin = {
               ${upNext.map(v => `
                 <div data-related-vid="${v.id}" data-ch="${v.channelId}" class="flex gap-3 p-2 rounded-xl hover:bg-[#272727] transition cursor-pointer group">
                   <div class="relative w-40 aspect-video rounded-lg overflow-hidden bg-[#222] shrink-0">
-                    <img src="${v.thumbnail}" alt="${v.title}" class="w-full h-full object-cover group-hover:scale-105 transition" />
+                    <img src="${v.thumbnail}" alt="${v.title}" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition" />
                     <span class="absolute bottom-1 right-1 px-1 rounded bg-black/80 text-white text-[10px] font-mono">${v.duration}</span>
                   </div>
                   <div class="flex flex-col gap-1 flex-1 overflow-hidden">

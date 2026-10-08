@@ -37,7 +37,7 @@ export const playlistViewMixin = {
         <div class="w-full lg:w-80 shrink-0">
           <div class="sticky top-20 bg-gradient-to-b from-[#303030] to-[#1a1a1a] rounded-3xl p-6 border border-[#383838] flex flex-col gap-5 shadow-2xl">
             <div class="relative aspect-video rounded-2xl overflow-hidden shadow-lg bg-black">
-              <img src="${playlist.thumbnail}" alt="${playlist.title}" class="w-full h-full object-cover" />
+              <img src="${playlist.thumbnail}" alt="${playlist.title}" loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <div class="absolute bottom-2 right-2 bg-black/80 text-white px-2.5 py-0.5 rounded text-xs font-mono font-bold">
                 &#9776; ${plVideos.length}
               </div>
@@ -71,7 +71,7 @@ export const playlistViewMixin = {
             <div data-vid="${v.id}" data-ch="${v.channelId}" data-in-playlist="true" class="flex items-center gap-4 p-3 rounded-2xl hover:bg-[#272727] transition cursor-pointer group border border-transparent hover:border-[#383838] ${this.watchVideo && this.watchVideo.id === v.id ? 'bg-[#272727] border-[#383838]' : ''}">
               <span class="text-sm font-mono text-[#888] w-6 text-center shrink-0 group-hover:text-white font-bold">${idx + 1}</span>
               <div class="relative w-40 sm:w-48 aspect-video rounded-xl overflow-hidden bg-[#222] shrink-0">
-                <img src="${v.thumbnail}" alt="${v.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+                <img src="${v.thumbnail}" alt="${v.title}" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
                 <span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-white text-[10px] font-mono">${v.duration}</span>
               </div>
               <div class="flex flex-col gap-1 flex-1 min-w-0">

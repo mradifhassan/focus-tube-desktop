@@ -185,12 +185,19 @@ renderer from it. This gives the app a real `http://` origin — required for Yo
 Invidious/oEmbed fetches, which reject the `file://` "null" origin that a plain
 `loadFile()` would produce.
 
+On Linux/Wayland, the renderer is routed through XWayland (`ozone-platform=x11`):
+Chromium's native Wayland GPU backend is unstable on some AMD/Intel machines
+(app crashed with `GPU process isn't usable. Goodbye`), while the X11/EGL path
+is rock-solid — so the app keeps full hardware acceleration and never falls back
+to slow software rendering. The renderer is fully offline-capable: Tailwind and
+the app bundle are compiled/self-contained, nothing external blocks startup.
+
 ## Tech stack
 
 | Layer      | Tech                                                              |
 |------------|-------------------------------------------------------------------|
 | Shell      | [Electron](https://www.electronjs.org/) 33 (desktop) · [Capacitor](https://capacitorjs.com/) 7 (Android) |
-| Renderer   | Vanilla ES modules + Vite, Tailwind CSS (via CDN), YouTube IFrame API |
+| Renderer   | Vanilla ES modules + Vite, Tailwind CSS (compiled into the bundle), YouTube IFrame API |
 | Metadata   | Invidious public instances, YouTube oEmbed                        |
 | Packaging  | [electron-builder](https://www.electron.build/) → `.deb` · `.exe` · `.dmg`, Android Gradle → `.apk` |
 | Updates    | Windows `electron-updater` (auto) · Debian `apt` · macOS `Check for Updates…` menu · Android in-app banner |

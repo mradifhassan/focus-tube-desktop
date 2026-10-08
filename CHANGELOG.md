@@ -3,6 +3,27 @@
 All notable changes to **FocusTube** are documented here. Adheres loosely to
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Semver until 1.0: 0.x.
 
+## [2.4.0] - 2026-10-09
+
+### Performance
+
+- **Hardware acceleration re-enabled on Linux/Wayland.** The app no longer forces
+  software rendering. On Wayland sessions it routes Chromium through XWayland
+  (`ozone-platform=x11`), where the GPU process is stable — so clicks and
+  scrolling run at full GPU compositing speed instead of SwiftShader software
+  rasterization (measured ~2× faster frame cost, GPU compositing/WebGL/video
+  decode active again on machines that previously crashed on native Wayland).
+- **Renderer boots without render-blocking external requests.** The Tailwind CSS
+  runtime compiler (CDN) and the Google Fonts stylesheet were removed from
+  `index.html`; Tailwind is now compiled into the bundle by the Vite plugin
+  (`index.css` is wired into the build and declares explicit `@source`
+  globs, so even arbitrary-value utilities used in template literals are
+  generated). The app launches even when the machine is offline or on a slow
+  link (previously it waited on `cdn.tailwindcss.com` before the UI could start).
+- **Lazy-loaded thumbnails.** Every video/playlist thumbnail now uses native
+  `loading="lazy"` + `decoding="async"`, so the home feed no longer fires 1000+
+  image requests at once on a slow connection — only images near the viewport load.
+
 ## [2.3.1] - 2026-10-09
 
 ### Fixed

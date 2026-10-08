@@ -32,7 +32,7 @@ export const homeViewMixin = {
           <div data-vid="${v.id}" data-ch="${v.channelId}" class="yt-video-card flex flex-col gap-3 group">
             <!-- THUMBNAIL -->
             <div class="relative aspect-video w-full rounded-xl overflow-hidden bg-[#222222]">
-              <img src="${v.thumbnail}" alt="${v.title}" class="yt-thumb-img w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+              <img src="${v.thumbnail}" alt="${v.title}" loading="lazy" decoding="async" class="yt-thumb-img w-full h-full object-cover group-hover:scale-105 transition duration-300" />
               <span class="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 rounded bg-black/80 text-white text-xs font-medium font-mono tracking-tight">
                 ${v.duration}
               </span>
