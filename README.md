@@ -69,9 +69,9 @@ Download `focus-tube-desktop_<version>_amd64.deb` from the
 [Releases page](https://github.com/mradifhassan/focus-tube-desktop/releases), then:
 
 ```bash
-sudo apt install -f ./focus-tube-desktop_2.1.0_amd64.deb
+sudo apt install -f ./focus-tube-desktop_2.1.1_amd64.deb
 # or
-sudo dpkg -i focus-tube-desktop_2.1.0_amd64.deb && sudo apt install -f
+sudo dpkg -i focus-tube-desktop_2.1.1_amd64.deb && sudo apt install -f
 ```
 
 Launch **FocusTube** from your application menu, or run `focustube` from a terminal.
