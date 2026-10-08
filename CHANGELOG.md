@@ -3,6 +3,17 @@
 All notable changes to **FocusTube** are documented here. Adheres loosely to
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Semver until 1.0: 0.x.
 
+## [2.2.0] - 2026-10-09
+
+### Added
+
+- **Windows installer** (.exe, NSIS) built natively on `windows-latest` and
+  attached to Releases.
+- **macOS app** (.dmg, unsigned) built natively on `macos-latest` and attached
+  to Releases.
+- Installation guides in the README for Linux (apt + .deb), Windows (.exe),
+  macOS (.dmg), and Android (web app as an installable PWA).
+
 ## [2.1.3] - 2026-10-09
 
 ### Fixed

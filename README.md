@@ -5,7 +5,7 @@
 **A free, distraction-free YouTube desktop client for HSC students in Bangladesh.**
 
 [![License](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/Platform-Linux--x64-lightgrey.svg)](#install)
+[![Platform](https://img.shields.io/badge/Platform-Linux%20%C2%B7%20Windows%20%C2%B7%20macOS-lightgrey.svg)](#install)
 [![Electron](https://img.shields.io/badge/Electron-33-47848f.svg)](package.json)
 [![Build](https://img.shields.io/github/actions/workflow/status/mradifhassan/focus-tube-desktop/build.yml?branch=main&label=build)](https://github.com/mradifhassan/focus-tube-desktop/actions)
 [![Release](https://img.shields.io/github/v/release/mradifhassan/focus-tube-desktop)](https://github.com/mradifhassan/focus-tube-desktop/releases)
@@ -14,7 +14,7 @@
 No ads. No algorithmic recommendations. No comments. Just curated HSC curriculum videos from
 [OnnoRokom Pathshala](https://www.youtube.com/@onnorokompathshala), Alchemy, and AloronXYZ — wrapped in a clean desktop window.
 
-*Built with Electron on Linux. A sibling of the [FocusTube web app](https://github.com/mradifhassan/focus-tube).*
+*Built with Electron. A sibling of the [FocusTube web app](https://github.com/mradifhassan/focus-tube).*
 
 ![FocusTube preview](docs/preview.png)
 
@@ -25,7 +25,7 @@ No ads. No algorithmic recommendations. No comments. Just curated HSC curriculum
 ## Features
 
 - **Curated distraction-free catalog** — 998+ hand-picked HSC videos and 60 playlists bundled offline; nothing is algorithmically recommended.
-- **Native desktop window** — packaged as a Debian `.deb`, installed to `/opt/FocusTube`, launches from your app menu with `Categories=Education`.
+- **Native desktop window** — installs as a `.deb` (Linux), `.exe` installer (Windows), or `.dmg` (macOS); on Debian/Ubuntu it launches from your app menu with `Categories=Education`.
 - **Privacy shield** — Invidious instances for channel metadata, `youtube-nocookie.com` embeds, no tracking cookies, no account.
 - **Playlist autoplay** — a native-style queue with repeat / shuffle / autoplay while you study.
 - **Offline-first catalogs** — the full OnnoRokom / Alchemy / AloronXYZ indexes ship with the app and render instantly; only video playback and Live channel fetch need the network.
@@ -63,15 +63,50 @@ The repository is served from GitHub Pages, signed with the **FocusTube Release 
 ([`focustube.asc`](https://mradifhassan.github.io/focus-tube-desktop/focustube.asc)); Snap/PPA users
 on Ubuntu find the same experience here.
 
+### Windows (x64) — `.exe` installer
+
+1. Download **`FocusTube-Setup-<version>.exe`** from the
+   [Releases page](https://github.com/mradifhassan/focus-tube-desktop/releases).
+2. Double-click the installer. Choose the default install location or a folder of your own
+   (the installer lets you pick either).
+3. Launch **FocusTube** from the Start menu or the desktop shortcut.
+
+> The installer is unsigned for now, so Windows SmartScreen may show a
+> "Windows protected your PC" prompt. Click **More info → Run anyway**. FocusTube is
+> open source (AGPL-3.0) — build it yourself with `npm run build:win` if you prefer.
+
+### macOS (Apple Silicon / Intel) — `.dmg`
+
+1. Download **`FocusTube-<version>-arm64.dmg`** (Apple Silicon) or
+   **`FocusTube-<version>-x64.dmg`** (Intel) from the
+   [Releases page](https://github.com/mradifhassan/focus-tube-desktop/releases).
+2. Double-click the `.dmg` and drag **FocusTube** into your **Applications** folder.
+3. First launch only: because the app is not notarized, right-click **FocusTube** in
+   Finder → **Open**, then confirm **Open** — Gatekeeper won't block it afterwards.
+
+### Android — the web app, as an installable app
+
+There is no Android APK yet, but the [FocusTube web app](https://mradifhassan.github.io/focus-tube/)
+_is_ fully mobile-optimized. In Chrome (Android) it installs like a native app with its own
+launcher icon:
+
+1. Open <https://mradifhassan.github.io/focus-tube/> in Chrome.
+2. Tap **⋮ (Menu) → Add to Home screen** (or **Install app / Install page**).
+3. Confirm **Install** — FocusTube and its icon appear on your home screen and launch
+   fullscreen, just like an app.
+
+That gives every HSC student with any Android phone the full distraction-free catalog without
+an install. A native APK build is a planned follow-up.
+
 ### Manual `.deb`
 
 Download `focus-tube-desktop_<version>_amd64.deb` from the
 [Releases page](https://github.com/mradifhassan/focus-tube-desktop/releases), then:
 
 ```bash
-sudo apt install -f ./focus-tube-desktop_2.1.1_amd64.deb
+sudo apt install -f ./focus-tube-desktop_2.2.0_amd64.deb
 # or
-sudo dpkg -i focus-tube-desktop_2.1.1_amd64.deb && sudo apt install -f
+sudo dpkg -i focus-tube-desktop_2.2.0_amd64.deb && sudo apt install -f
 ```
 
 Launch **FocusTube** from your application menu, or run `focustube` from a terminal.
@@ -85,7 +120,9 @@ Run everything from source (below), or add more pack targets by extending the `l
 
 ## Build from source
 
-**Requirements:** Node.js 20+ and npm.
+**Requirements:** Node.js 20+ and npm. Build on the matching OS for each target —
+`npm run build:win` needs Windows (or wine), `npm run build:mac` needs macOS
+(Apple's tooling can't cross-compile).
 
 ```bash
 git clone https://github.com/mradifhassan/focus-tube-desktop.git
@@ -97,11 +134,13 @@ npm ci
 # 2) Install the renderer (web app) build dependencies
 npm ci --prefix renderer
 
-# 3) Build the renderer, then package the .deb
-npm run build
+# 3) Build the renderer, then package your platform's installer
+npm run build        # Linux    → dist/*.deb          (also updates the APT repo)
+npm run build:win    # Windows  → dist/FocusTube-Setup-*.exe
+npm run build:mac    # macOS    → dist/FocusTube-*-{arm64,x64}.dmg
 ```
 
-That's the exact pipeline GitHub Actions runs. The `.deb` lands in `dist/`. For daily use without packaging:
+That's the exact pipeline GitHub Actions runs. The installer lands in `dist/`. For daily use without packaging:
 
 ```bash
 npm start        # (after npm run build:renderer)
@@ -122,7 +161,7 @@ focus-tube-desktop/
 ├── app/                     # generated renderer build (served at runtime; not committed)
 ├── apt-repo/                # generated APT repository (published to GitHub Pages)
 ├── build/icon.png           # 512×512 application icon
-└── .github/workflows/       # CI — .deb, releases, and the APT repository
+└── .github/workflows/       # CI — .deb/.exe/.dmg builds, GitHub Releases, APT repo + Pages
 ```
 
 ## How it works under the hood
@@ -139,8 +178,8 @@ Invidious/oEmbed fetches, which reject the `file://` "null" origin that a plain
 | Shell      | [Electron](https://www.electronjs.org/) 33                        |
 | Renderer   | Vanilla ES modules + Vite, Tailwind CSS (via CDN), YouTube IFrame API |
 | Metadata   | Invidious public instances, YouTube oEmbed                        |
-| Packaging  | [electron-builder](https://www.electron.build/) → `.deb`                                 |
-| Distribution | APT repository on GitHub Pages (GPG-signed `dists/stable`) + GitHub Releases          |
+| Packaging  | [electron-builder](https://www.electron.build/) → `.deb` · `.exe` · `.dmg` |
+| Distribution | APT repository on GitHub Pages (GPG-signed `dists/stable`) + GitHub Releases (.deb/.exe/.dmg) |
 
 ## Contributing
 
