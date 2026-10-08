@@ -27,6 +27,7 @@
   "build": {
     "appId": "com.focustube.desktop",
     "productName": "FocusTube",
+    "publish": "never",
     "files": [
       "main.js",
       "package.json",
