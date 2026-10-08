@@ -251,6 +251,7 @@ jobs:
 
       - name: Package APK artifact
         run: |
+          mkdir -p dist
           cp android/app/build/outputs/apk/release/app-release.apk "dist/FocusTube-${ANDROID_VERSION_NAME}.apk"
           ls -lh dist/
 
