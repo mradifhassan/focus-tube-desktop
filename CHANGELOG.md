@@ -3,6 +3,14 @@
 All notable changes to **FocusTube** are documented here. Adheres loosely to
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Semver until 1.0: 0.x.
 
+## [2.1.1] - 2026-10-08
+
+### Fixed
+
+- APT repository build + GitHub Pages deployment moved into a single CI job
+  (previous split job failed to provision). Same `sudo apt install focustube`
+  end result, now deployed on every release tag.
+
 ## [2.1.0] - 2026-10-08
 
 ### Added

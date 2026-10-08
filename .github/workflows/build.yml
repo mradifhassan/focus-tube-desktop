@@ -8,8 +8,14 @@ on:
     branches: [main]
   workflow_dispatch:
 
+concurrency:
+  group: focustube-pages-${{ github.ref }}
+  cancel-in-progress: false
+
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build:
@@ -58,48 +64,35 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  apt-repo:
-    runs-on: ubuntu-latest
-    needs: build
-    if: startsWith(github.ref, 'refs/tags/')
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      # ---- APT repository on GitHub Pages (published on every release tag) ----
 
-      - name: Install apt-tools
+      - name: Install apt-tools (tag pushes only)
+        if: startsWith(github.ref, 'refs/tags/')
         run: sudo apt-get update && sudo apt-get install -y dpkg-dev apt-utils
 
-      - name: Download .deb artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: focustube-linux-deb
-          path: dist
-
-      - name: Import release signing key
+      - name: Import release signing key (tag pushes only)
+        if: startsWith(github.ref, 'refs/tags/')
         env:
           FOCUSTUBE_REPO_SIGNING_KEY: ${{ secrets.FOCUSTUBE_REPO_SIGNING_KEY }}
         run: echo "$FOCUSTUBE_REPO_SIGNING_KEY" | gpg --batch --import
 
-      - name: Build and sign APT repository
+      - name: Build and sign APT repository (tag pushes only)
+        if: startsWith(github.ref, 'refs/tags/')
         run: bash scripts/apt-repo.sh
         env:
           SIGNING_PASSPHRASE: ${{ secrets.FOCUSTUBE_REPO_SIGNING_PASSPHRASE }}
 
-      - name: Configure Pages
+      - name: Configure Pages (tag pushes only)
+        if: startsWith(github.ref, 'refs/tags/')
         uses: actions/configure-pages@v5
 
-      - name: Upload Pages artifact
+      - name: Upload Pages artifact (tag pushes only)
+        if: startsWith(github.ref, 'refs/tags/')
         uses: actions/upload-pages-artifact@v3
         with:
           path: apt-repo
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages (tag pushes only)
+        if: startsWith(github.ref, 'refs/tags/')
         id: deployment
         uses: actions/deploy-pages@v4
