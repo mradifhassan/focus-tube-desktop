@@ -55,7 +55,7 @@ done
 binary="$out/dists/$suite/main/binary-$arch"
 mkdir -p "$binary"
 
-dpkg-scanpackages --multiversion "$out/pool" > "$binary/Packages"
+( cd "$out" && dpkg-scanpackages --multiversion pool ) > "$binary/Packages"
 gzip -9c < "$binary/Packages" > "$binary/Packages.gz"
 echo "indexed: $binary/Packages.gz ($(wc -l < "$binary/Packages") package stanzas)"
 
