@@ -3,6 +3,22 @@
 All notable changes to **FocusTube** are documented here. Adheres loosely to
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Semver until 1.0: 0.x.
 
+## [2.1.0] - 2026-10-08
+
+### Added
+
+- **APT repository on GitHub Pages** — install and update FocusTube with plain `sudo apt install focustube`:
+
+  ```bash
+  curl -fsSL https://mradifhassan.github.io/focus-tube-desktop/focustube.asc | sudo gpg --dearmor -o /usr/share/keyrings/focustube-keyring.gpg
+  echo "deb [signed-by=/usr/share/keyrings/focustube-keyring.gpg] https://mradifhassan.github.io/focus-tube-desktop stable main" | sudo tee /etc/apt/sources.list.d/focustube.list
+  sudo apt update && sudo apt install focustube
+  ```
+
+  - Signed with the dedicated **FocusTube Release Signing** key; repo rebuilt and re-deployed by CI on every `v*` tag.
+  - `scripts/apt-repo.sh` runs the whole `dpkg-scanpackages` + `apt-ftparchive` + GPG signing flow.
+- Debian package renamed to `focustube` so `apt install focustube` matches the product name.
+
 ## [2.0.0] - 2026-10-08
 
 ### Added

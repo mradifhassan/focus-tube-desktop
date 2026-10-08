@@ -34,15 +34,44 @@ No ads. No algorithmic recommendations. No comments. Just curated HSC curriculum
 
 ## Install
 
-### Debian / Ubuntu (x64)
+### Debian / Ubuntu (x64) — APT repository (recommended)
+
+Install **FocusTube** the same way you install any system package — with `apt`. One-time setup adds
+the repository and its signing key, then updates install just like everything else:
+
+```bash
+# 1) Trust the repository signing key
+curl -fsSL https://mradifhassan.github.io/focus-tube-desktop/focustube.asc \
+  | sudo gpg --dearmor -o /usr/share/keyrings/focustube-keyring.gpg
+
+# 2) Add the repository
+echo "deb [signed-by=/usr/share/keyrings/focustube-keyring.gpg] https://mradifhassan.github.io/focus-tube-desktop stable main" \
+  | sudo tee /etc/apt/sources.list.d/focustube.list
+
+# 3) Install
+sudo apt update
+sudo apt install focustube
+```
+
+From then on you always stay up to date with the plainest commands:
+
+```bash
+sudo apt update && sudo apt upgrade
+```
+
+The repository is served from GitHub Pages, signed with the **FocusTube Release Signing** key
+([`focustube.asc`](https://mradifhassan.github.io/focus-tube-desktop/focustube.asc)); Snap/PPA users
+on Ubuntu find the same experience here.
+
+### Manual `.deb`
 
 Download `focus-tube-desktop_<version>_amd64.deb` from the
 [Releases page](https://github.com/mradifhassan/focus-tube-desktop/releases), then:
 
 ```bash
-sudo apt install -f ./focus-tube-desktop_2.0.0_amd64.deb
+sudo apt install -f ./focus-tube-desktop_2.1.0_amd64.deb
 # or
-sudo dpkg -i focus-tube-desktop_2.0.0_amd64.deb && sudo apt install -f
+sudo dpkg -i focus-tube-desktop_2.1.0_amd64.deb && sudo apt install -f
 ```
 
 Launch **FocusTube** from your application menu, or run `focustube` from a terminal.
@@ -84,14 +113,16 @@ npm start        # (after npm run build:renderer)
 focus-tube-desktop/
 ├── main.js                  # Electron main process — loopback server + window
 ├── scripts/
-│   └── build-renderer.sh    # builds the renderer into app/ (relative asset base)
+│   ├── build-renderer.sh    # builds the renderer into app/ (relative asset base)
+│   └── apt-repo.sh          # builds + signs the APT repo from dist/*.deb
 ├── renderer/                # the FocusTube web app source (own package.json)
 │   ├── src/                 # views, router, player, catalogs (OnnoRokom, Alchemy, AloronXYZ)
 │   ├── public/              # web manifest, icons, SEO files
 │   └── vite.config.ts
 ├── app/                     # generated renderer build (served at runtime; not committed)
+├── apt-repo/                # generated APT repository (published to GitHub Pages)
 ├── build/icon.png           # 512×512 application icon
-└── .github/workflows/       # CI — builds the .deb and drafts releases from tags
+└── .github/workflows/       # CI — .deb, releases, and the APT repository
 ```
 
 ## How it works under the hood
@@ -108,7 +139,8 @@ Invidious/oEmbed fetches, which reject the `file://` "null" origin that a plain
 | Shell      | [Electron](https://www.electronjs.org/) 33                        |
 | Renderer   | Vanilla ES modules + Vite, Tailwind CSS (via CDN), YouTube IFrame API |
 | Metadata   | Invidious public instances, YouTube oEmbed                        |
-| Packaging  | [electron-builder](https://www.electron.build/) → `.deb`          |
+| Packaging  | [electron-builder](https://www.electron.build/) → `.deb`                                 |
+| Distribution | APT repository on GitHub Pages (GPG-signed `dists/stable`) + GitHub Releases          |
 
 ## Contributing
 
