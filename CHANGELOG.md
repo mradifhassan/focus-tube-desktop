@@ -3,6 +3,18 @@
 All notable changes to **FocusTube** are documented here. Adheres loosely to
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Semver until 1.0: 0.x.
 
+## [2.1.2] - 2026-10-09
+
+### Fixed
+
+- App failing to open on Linux/Wayland: the GPU process crashed shortly after
+  launch (`GPU process isn't usable. Goodbye`), taking Electron down with it.
+  Hardware acceleration is now disabled via `app.disableHardwareAcceleration()`
+  — software rendering is plenty for a video-viewer UI.
+- GitHub Pages deployments are now tracked against the `github-pages`
+  environment, so the repo's Environments panel shows a green deployment
+  instead of stale red crosses.
+
 ## [2.1.1] - 2026-10-08
 
 ### Fixed

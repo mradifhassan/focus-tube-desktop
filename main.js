@@ -10,6 +10,11 @@ const http = require('node:http');
 const fs = require('node:fs');
 const path = require('node:path');
 
+// The GPU/compositor process is unreliable on some Linux/Wayland setups and
+// crashes shortly after launch ("GPU process isn't usable. Goodbye"), taking
+// the whole app with it. Software rendering is plenty for a video-viewer UI.
+app.disableHardwareAcceleration();
+
 const DEFAULT_PORT = 18732;
 
 const MIME = {
