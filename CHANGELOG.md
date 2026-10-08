@@ -3,6 +3,15 @@
 All notable changes to **FocusTube** are documented here. Adheres loosely to
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Semver until 1.0: 0.x.
 
+## [2.1.3] - 2026-10-09
+
+### Fixed
+
+- Stray "1" rendered at the top-left of every page: a lone `1` after the
+  `google-site-verification` meta tag was interpreted by the HTML parser as a
+  text node in `<body>` (non-whitespace text inside `<head>`). The web repo was
+  fixed in parallel.
+
 ## [2.1.2] - 2026-10-09
 
 ### Fixed
