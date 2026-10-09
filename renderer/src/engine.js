@@ -12,29 +12,68 @@ export class RelatedVideosEngine {
   }
 
   buildGraph() {
-    this.videos.forEach(v => {
-      this.adjacencyList.set(v.id, new Set());
-    });
+    const videos = this.videos;
+    const n = videos.length;
+    this.adjacencyList = new Map();
+    if (n === 0) return;
 
-    for (let i = 0; i < this.videos.length; i++) {
-      for (let j = i + 1; j < this.videos.length; j++) {
-        const v1 = this.videos[i];
-        const v2 = this.videos[j];
-        const text1 = (v1.title + ' ' + (v1.description || '')).toLowerCase();
-        const text2 = (v2.title + ' ' + (v2.description || '')).toLowerCase();
-        const words1 = new Set(text1.match(/\b[a-z\u0980-\u09ff]{4,}\b/g) || []);
-        const words2 = new Set(text2.match(/\b[a-z\u0980-\u09ff]{4,}\b/g) || []);
+    // 1. Tokenize each video once (the old code re-derived two Sets with two
+    //    regex matches *per pair*, ~500k times for a 998-video channel).
+    const ids = new Array(n);
+    const wordSets = new Array(n);
+    for (let i = 0; i < n; i++) {
+      ids[i] = videos[i].id;
+      this.adjacencyList.set(ids[i], new Set());
+      const text = ((videos[i].title || '') + ' ' + (videos[i].description || '')).toLowerCase();
+      wordSets[i] = new Set(text.match(/\b[a-z\u0980-\u09ff]{4,}\b/g) || []);
+    }
 
-        let overlap = 0;
-        words1.forEach(w => {
-          if (words2.has(w)) overlap++;
-        });
+    // 2. Inverted index: word -> video indices that contain it.
+    const postings = new Map();
+    for (let i = 0; i < n; i++) {
+      wordSets[i].forEach((w) => {
+        let arr = postings.get(w);
+        if (arr === undefined) postings.set(w, (arr = []));
+        arr.push(i);
+      });
+    }
 
-        if (overlap >= 1 || j === i + 1) {
-          this.adjacencyList.get(v1.id).add(v2.id);
-          this.adjacencyList.get(v2.id).add(v1.id);
+    // 3. For each video, walk posting lists to find every video sharing >=1 word.
+    //    Any single shared word already decides the edge, so we can stop as soon
+    //    as all other videos are reached (saturation) — and we process words most
+    //    shared-first so saturation happens almost immediately on real catalogs.
+    const seen = new Uint8Array(n);
+    for (let i = 0; i < n; i++) {
+      const adj = this.adjacencyList.get(ids[i]);
+      const words = Array.from(wordSets[i]).sort(
+        (a, b) => postings.get(b).length - postings.get(a).length
+      );
+
+      let marked = 0;
+      for (let wi = 0; wi < words.length; wi++) {
+        const arr = postings.get(words[wi]);
+        for (let k = 0; k < arr.length; k++) {
+          const j = arr[k];
+          if (j !== i && !seen[j]) {
+            seen[j] = 1;
+            marked++;
+          }
+        }
+        if (marked === n - 1) break;
+      }
+
+      // Insertion order matters: the old O(n^2) scan walked j ascending, and
+      // getUpNext()'s BFS output depends on Set iteration order. Add edges here
+      // in ascending j so each neighbour set matches the old order exactly
+      // (j < i were already appended by earlier rows, also ascending).
+      for (let j = i + 1; j < n; j++) {
+        if (seen[j] || j === i + 1) {
+          adj.add(ids[j]);
+          this.adjacencyList.get(ids[j]).add(ids[i]);
         }
       }
+
+      seen.fill(0);
     }
   }
 

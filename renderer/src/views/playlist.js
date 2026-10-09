@@ -68,7 +68,7 @@ export const playlistViewMixin = {
         <div class="flex-1 flex flex-col gap-3">
           <h2 class="text-lg font-bold text-white mb-2">Videos in Playlist (${plVideos.length})</h2>
           ${plVideos.map((v, idx) => `
-            <div data-vid="${v.id}" data-ch="${v.channelId}" data-in-playlist="true" class="flex items-center gap-4 p-3 rounded-2xl hover:bg-[#272727] transition cursor-pointer group border border-transparent hover:border-[#383838] ${this.watchVideo && this.watchVideo.id === v.id ? 'bg-[#272727] border-[#383838]' : ''}">
+            <div data-vid="${v.id}" data-ch="${v.channelId}" data-in-playlist="true" class="yt-list-row flex items-center gap-4 p-3 rounded-2xl hover:bg-[#272727] transition cursor-pointer group border border-transparent hover:border-[#383838] ${this.watchVideo && this.watchVideo.id === v.id ? 'bg-[#272727] border-[#383838]' : ''}">
               <span class="text-sm font-mono text-[#888] w-6 text-center shrink-0 group-hover:text-white font-bold">${idx + 1}</span>
               <div class="relative w-40 sm:w-48 aspect-video rounded-xl overflow-hidden bg-[#222] shrink-0">
                 <img src="${v.thumbnail}" alt="${v.title}" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />

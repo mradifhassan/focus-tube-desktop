@@ -3,6 +3,34 @@
 All notable changes to **FocusTube** are documented here. Adheres loosely to
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Semver until 1.0: 0.x.
 
+## [2.6.0] - 2026-10-09
+
+### Performance
+
+- **Video, channel and playlist pages now open almost instantly.** Clicking a
+  video used to freeze the UI for 3–9 seconds on the main channel: the
+  related-videos graph was rebuilt with an O(n²) word-overlap scan on every
+  watch-page render (measured **8,835 ms** for the 998-video OnnoRokom catalog).
+  It's now built with an inverted index — same result, byte-for-byte — in
+  **~190 ms**, computed once per channel and pre-built during idle time at
+  startup. A video click now takes ~17 ms of main-thread work (was multi-second).
+- **Large grids skip off-screen work.** Video cards use `content-visibility:
+  auto`, so the 1000+ card home/channel grids only lay out and paint what's
+  visible. Channel page (998 cards) paints in ~250 ms; playlist opens in <80 ms.
+- **Flattened catalog lists and graphs are memoized.** `getAllCachedVideos()` /
+  `getAllCachedPlaylists()` are cached and the related graph is built once per
+  channel, instead of re-spreading 1000+ objects on every click.
+- **Background channel refresh no longer stalls the UI.** All Invidious
+  instances are now queried in parallel and the first success wins (was a
+  sequential 5 × 3.5 s walk = up to 17.5 s of dead waiting); the last working
+  instance is remembered. A refresh no longer re-renders the page out from under
+  a video you're watching or a playlist you're browsing.
+- **Faster playback start.** Hovering/touching a video's facade now prefetches
+  the exact embed document, and the player hydrates on `pointerdown` (earlier in
+  the gesture) rather than waiting for `click`.
+- **Non-blocking font load.** Roboto is loaded via a low-priority stylesheet
+  instead of a render-blocking CSS `@import`, so it no longer delays first paint.
+
 ## [2.5.1] - 2026-10-09
 
 ### Fixed

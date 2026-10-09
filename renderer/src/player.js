@@ -109,11 +109,30 @@ export const playerMixin = {
     this.preconnectUrl('https://www.youtube.com');
     this.preconnectUrl('https://www.google.com');
     this.preconnectUrl('https://i.ytimg.com');
+    this.preconnectUrl('https://s.ytimg.com');
     const pre = document.createElement('link');
     pre.rel = 'prefetch';
     pre.as = 'script';
     pre.href = 'https://www.youtube.com/iframe_api';
     document.head.appendChild(pre);
+  },
+
+  // Prefetch the exact embed document the iframe will request, so pressing play
+  // serves it from cache instead of starting the YouTube handshake cold.
+  prefetchEmbed(facade) {
+    const id = facade && facade.getAttribute('data-facade-vid');
+    if (!id) return;
+    const host = this.privacyShield ? 'https://www.youtube-nocookie.com' : 'https://www.youtube.com';
+    const origin = encodeURIComponent(window.location.origin);
+    const href = `${host}/embed/${id}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1&origin=${origin}`;
+    if (!this._prefetchedEmbeds) this._prefetchedEmbeds = new Set();
+    if (this._prefetchedEmbeds.has(href)) return;
+    this._prefetchedEmbeds.add(href);
+    const link = document.createElement('link');
+    link.rel = 'prefetch';
+    link.as = 'document';
+    link.href = href;
+    document.head.appendChild(link);
   },
 
   buildPlayerIframe(id, title) {
@@ -150,8 +169,21 @@ export const playerMixin = {
   wireFacadeEvents(facadeId, hydrateFn) {
     const facade = document.getElementById(facadeId);
     if (!facade) return;
-    facade.addEventListener('mouseenter', () => this.prewarmYtFacade());
-    facade.addEventListener('touchstart', () => this.prewarmYtFacade(), { passive: true });
-    facade.addEventListener('click', () => hydrateFn.call(this, facade));
+    const warm = () => {
+      this.prewarmYtFacade();
+      this.prefetchEmbed(facade);
+    };
+    facade.addEventListener('mouseenter', warm);
+    facade.addEventListener('touchstart', warm, { passive: true });
+
+    // Idempotent hydration — pointerdown fires earlier than click, so the iframe
+    // starts loading sooner; click stays as the keyboard/accessibility fallback.
+    const hydrateOnce = () => {
+      if (facade.dataset.hydrated === '1') return;
+      facade.dataset.hydrated = '1';
+      hydrateFn.call(this, facade);
+    };
+    facade.addEventListener('pointerdown', hydrateOnce);
+    facade.addEventListener('click', hydrateOnce);
   },
 };

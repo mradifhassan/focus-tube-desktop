@@ -30,6 +30,7 @@ export const storageMixin = {
 
   saveChannels() {
     localStorage.setItem('yt_subscribed_channels', JSON.stringify(this.subscribedChannels));
+    this.bumpDataRevision();
   },
 
   loadCatalog() {
@@ -52,5 +53,6 @@ export const storageMixin = {
 
   saveCatalog() {
     localStorage.setItem('yt_catalog_cache', JSON.stringify(this.dataCache));
+    this.bumpDataRevision();
   },
 };

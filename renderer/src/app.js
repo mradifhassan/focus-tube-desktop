@@ -11,6 +11,7 @@
  */
 
 import { ICONS } from './icons.js';
+import { RelatedVideosEngine } from './engine.js';
 import { routerMixin } from './router.js';
 import { seoMixin } from './seo.js';
 import { apiMixin } from './api.js';
@@ -60,6 +61,17 @@ class FreeTubeApp {
     this.dataCache = this.loadCatalog();
     this.root = document.getElementById('root');
 
+    // Memoization caches — invalidated via _dataRevision whenever the catalog,
+    // subscriptions or live-fetched videos change (see bumpDataRevision()).
+    // Without these, every click re-flattened 1000+ videos and rebuilt the
+    // related-videos graph from scratch (multi-second main-thread freezes).
+    this._dataRevision = 0;
+    this._allVideosCache = null;
+    this._allVideosRev = -1;
+    this._allPlaylistsCache = null;
+    this._allPlaylistsRev = -1;
+    this._relatedEngines = new Map();
+
     // Modals
     this.showAddModal = false;
     this.showUserModal = false;
@@ -86,6 +98,7 @@ class FreeTubeApp {
   init() {
     this.render();
     this.setupEventListeners();
+    this.warmRelatedEngines();
     if (!this.isolatedVideoId) {
       this.subscribedChannels.forEach(ch => this.fetchLiveChannelData(ch.id));
     }
@@ -94,7 +107,16 @@ class FreeTubeApp {
   // ============================================================================
   // DATA ACCESS HELPERS (used heavily by views & router)
   // ============================================================================
+  // Bump whenever a cached flattening/graph could go stale (catalog save,
+  // subscription changes, live-fetched videos). Caches below compare against it.
+  bumpDataRevision() {
+    this._dataRevision = (this._dataRevision || 0) + 1;
+  }
+
   getAllCachedVideos() {
+    if (this._allVideosCache && this._allVideosRev === this._dataRevision) {
+      return this._allVideosCache;
+    }
     let all = [];
     this.subscribedChannels.forEach(ch => {
       const cat = this.dataCache[ch.id];
@@ -106,10 +128,15 @@ class FreeTubeApp {
         })));
       }
     });
+    this._allVideosCache = all;
+    this._allVideosRev = this._dataRevision;
     return all;
   }
 
   getAllCachedPlaylists() {
+    if (this._allPlaylistsCache && this._allPlaylistsRev === this._dataRevision) {
+      return this._allPlaylistsCache;
+    }
     let all = [];
     this.subscribedChannels.forEach(ch => {
       const cat = this.dataCache[ch.id];
@@ -121,7 +148,37 @@ class FreeTubeApp {
         })));
       }
     });
+    this._allPlaylistsCache = all;
+    this._allPlaylistsRev = this._dataRevision;
     return all;
+  }
+
+  // Related-videos graph is O(n) to build now, but still ~200ms for the
+  // 998-video channel — so build it once per channel and reuse it forever
+  // (invalidated when the video count for that channel changes).
+  getRelatedEngine(channelId, channelVids) {
+    if (!this._relatedEngines) this._relatedEngines = new Map();
+    const key = channelId + ':' + channelVids.length;
+    let engine = this._relatedEngines.get(key);
+    if (!engine) {
+      engine = new RelatedVideosEngine(channelVids);
+      this._relatedEngines.set(key, engine);
+    }
+    return engine;
+  }
+
+  // Pre-build the graphs during idle time right after boot, so the first video
+  // click has nothing left to compute.
+  warmRelatedEngines() {
+    const warm = () => {
+      const all = this.getAllCachedVideos();
+      this.subscribedChannels.forEach(ch => {
+        const vids = all.filter(v => v.channelId === ch.id);
+        if (vids.length) this.getRelatedEngine(ch.id, vids);
+      });
+    };
+    if (typeof requestIdleCallback === 'function') requestIdleCallback(warm, { timeout: 3000 });
+    else setTimeout(warm, 500);
   }
 
   // ============================================================================

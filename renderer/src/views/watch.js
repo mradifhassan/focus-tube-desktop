@@ -6,7 +6,6 @@
  */
 
 import { ICONS } from '../icons.js';
-import { RelatedVideosEngine } from '../engine.js';
 
 export const watchViewMixin = {
   renderWatchVideoPageHtml() {
@@ -17,7 +16,7 @@ export const watchViewMixin = {
     // suggestions, so watching stays isolated to the channels the user actually follows here.
     const allVids = this.getAllCachedVideos();
     const channelVids = allVids.filter(v => v.channelId === vid.channelId);
-    const engine = new RelatedVideosEngine(channelVids);
+    const engine = this.getRelatedEngine(vid.channelId, channelVids);
     let upNext = engine.getUpNext(vid.id, 12).filter(v => v.id !== vid.id);
     if (upNext.length < 4) {
       upNext = channelVids.filter(v => v.id !== vid.id).slice(0, 12);
