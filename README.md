@@ -5,7 +5,7 @@
 **A free, distraction-free YouTube desktop client for HSC students in Bangladesh.**
 
 [![License](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/Platform-Linux%20%C2%B7%20Windows%20%C2%B7%20macOS-lightgrey.svg)](#install)
+[![Platform](https://img.shields.io/badge/Platform-Linux%20%C2%B7%20Windows%20%C2%B7%20Android%20%C2%B7%20macOS-lightgrey.svg)](#install)
 [![Electron](https://img.shields.io/badge/Electron-33-47848f.svg)](package.json)
 [![Build](https://img.shields.io/github/actions/workflow/status/mradifhassan/focus-tube-desktop/build.yml?branch=main&label=build)](https://github.com/mradifhassan/focus-tube-desktop/actions)
 [![Release](https://img.shields.io/github/v/release/mradifhassan/focus-tube-desktop)](https://github.com/mradifhassan/focus-tube-desktop/releases)
