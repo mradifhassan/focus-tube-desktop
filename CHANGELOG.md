@@ -3,6 +3,22 @@
 All notable changes to **FocusTube** are documented here. Adheres loosely to
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Semver until 1.0: 0.x.
 
+## [2.5.0] - 2026-10-09
+
+### Performance
+
+- **Instant video opening with a YouTube facade.** Opening a watch page used to
+  embed the YouTube iframe immediately, which downloads YouTube's player scripts
+  and stream far before you ever press play — causing the multi-second freeze on
+  slower connections. Watch pages (and isolated-view pages) now render a
+  lightweight static thumbnail with a play button instead; the real YouTube
+  embed is only injected after you click, with `autoplay=1`. Hovering/touching
+  the facade pre-warms the connection (preconnect to YouTube, Google, and the
+  thumbnail CDN) and prefetches the IFrame API script, so hydration is
+  near-instant. The live player survives page re-renders and playlist
+  auto-advance is unchanged. Privacy-neutral `youtube-nocookie.com` embeds are
+  preserved.
+
 ## [2.4.1] - 2026-10-09
 
 ### Fixed

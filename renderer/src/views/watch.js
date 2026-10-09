@@ -29,9 +29,6 @@ export const watchViewMixin = {
     const plIds = inPlaylist ? this.selectedPlaylist.videos : [];
     const plIdx = inPlaylist ? plIds.indexOf(vid.id) : -1;
 
-    const host = this.privacyShield ? 'https://www.youtube-nocookie.com' : 'https://www.youtube.com';
-    const origin = encodeURIComponent(window.location.origin);
-
     return `
       <!-- TOP BACK BUTTON RAIL -->
       <div class="sticky top-0 z-30 bg-[#0f0f0f] px-3 sm:px-6 py-3 border-b border-[#272727] flex flex-wrap items-center justify-between gap-2">
@@ -50,16 +47,19 @@ export const watchViewMixin = {
         <!-- LEFT MAIN WATCH CONTAINER -->
         <div class="flex-1 flex flex-col gap-4 max-w-5xl min-w-0">
           
-          <!-- IFRAME PLAYER -->
+          <!-- LIGHTWEIGHT FACADE: static thumbnail + play overlay. The real
+               YouTube embed is only hydrated on click (facade pattern), so
+               opening a watch page pulls zero YouTube scripts/streams until the
+               user actually wants to play. Hover/touch pre-warms the connection. -->
           <div id="watch-player-shell" class="relative aspect-video w-full bg-black rounded-2xl overflow-hidden shadow-2xl border border-[#272727]">
-            <iframe
-              id="yt-watch-iframe"
-              src="${host}/embed/${vid.id}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1&origin=${origin}"
-              title="${vid.title}"
-              class="w-full h-full border-0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen>
-            </iframe>
+            <div id="watch-player-facade" data-facade-vid="${vid.id}" class="absolute inset-0 cursor-pointer group" role="button" aria-label="Play ${vid.title}">
+              <img src="https://i.ytimg.com/vi/${vid.id}/maxresdefault.jpg" alt="${vid.title}" decoding="async" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${vid.id}/hqdefault.jpg'" />
+              <div class="absolute inset-0 bg-black/35 group-hover:bg-black/20 transition flex items-center justify-center">
+                <span class="w-20 h-20 rounded-full bg-red-600 text-white flex items-center justify-center shadow-2xl group-hover:scale-105 transition">
+                  <svg class="w-9 h-9 ml-1 fill-white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </span>
+              </div>
+            </div>
           </div>
 
           <!-- EMBEDDING-DISABLED FALLBACK (shown only if this video can't be embedded) -->
@@ -258,6 +258,9 @@ export const watchViewMixin = {
         this.checkEmbeddable(embedId, 'watch-embed-fallback');
       }
     }
+
+    // Facade player: pre-warm on hover/touch, then hydrate the real embed on click.
+    this.wireFacadeEvents('watch-player-facade', this.hydrateWatchFacade);
 
     const backBtn = document.getElementById('watch-back-btn');
     if (backBtn) {
