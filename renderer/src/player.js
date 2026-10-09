@@ -89,16 +89,17 @@ export const playerMixin = {
   // connection and prefetches the IFrame API script, so hydration is near-instant.
 
   preconnectUrl(href) {
+    const url = new URL(href).href;
     if (!this._preconnects) {
       this._preconnects = new Set(
         Array.from(document.querySelectorAll('link[rel="preconnect"]'), (l) => l.href)
       );
     }
-    if (this._preconnects.has(href)) return;
-    this._preconnects.add(href);
+    if (this._preconnects.has(url)) return;
+    this._preconnects.add(url);
     const link = document.createElement('link');
     link.rel = 'preconnect';
-    link.href = href;
+    link.href = url;
     document.head.appendChild(link);
   },
 

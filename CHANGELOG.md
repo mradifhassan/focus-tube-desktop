@@ -3,6 +3,14 @@
 All notable changes to **FocusTube** are documented here. Adheres loosely to
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Semver until 1.0: 0.x.
 
+## [2.5.1] - 2026-10-09
+
+### Fixed
+
+- Pre-warming a video's facade no longer injects duplicate `preconnect` links
+  for `www.youtube.com` / `i.ytimg.com` — URL normalization now matches the
+  links already declared in the document head.
+
 ## [2.5.0] - 2026-10-09
 
 ### Performance
