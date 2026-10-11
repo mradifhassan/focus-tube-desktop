@@ -3,6 +3,15 @@
 All notable changes to **FocusTube** are documented here. Adheres loosely to
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Semver until 1.0: 0.x.
 
+## [2.6.1] - 2026-10-12
+
+### Added
+
+- **One Hour Classroom channel.** Subscribed to `@onehourclassroom1723` with two
+  curated playlists: *Physics 2nd Paper Class 11/12* (98 videos) and *Physics 1st
+  Paper Class 11/12* (99 videos). Videos are ordered sequentially by
+  chapter → theory/math → part. `CATALOG_VERSION` 20 → 21.
+
 ## [2.6.0] - 2026-10-09
 
 ### Performance
