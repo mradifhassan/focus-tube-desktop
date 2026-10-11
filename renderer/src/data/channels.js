@@ -43,4 +43,14 @@ Earlier I uploaded all my videos on "Mottasin Pahlovi BUETian" youtube channel(w
 
 In this channel you can take preparation of hsc as well as admission freely.`
   },
+  {
+    id: "UCRmXGgiNjFfBs-t8LvF74Bw",
+    url: "https://www.youtube.com/@onehourclassroom1723",
+    name: "One Hour Classroom",
+    handle: "@onehourclassroom1723",
+    avatarColor: "bg-amber-600",
+    initials: "OHC",
+    subscriberCount: "12.8K",
+    description: "",
+  }
 ];

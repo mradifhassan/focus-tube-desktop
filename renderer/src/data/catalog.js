@@ -10,9 +10,11 @@
 import { ALCHEMY } from './catalog-alchemy.js';
 import { ALORONXYZ } from './catalog-aloronxyz.js';
 import { ONNOROKOM } from './catalog-onnorokom.js';
+import { ONEHOUR } from './catalog-onehour.js';
 
 export const BUILTIN_CATALOG = {
   "UC8SDY8Wr6s6DIofumkZGfxg": ALCHEMY,
   "UCePPWrO7cZNtkOuiN7G4pMg": ALORONXYZ,
-  "UCBA6OI6vEDK13jfoiuX694A": ONNOROKOM
+  "UCBA6OI6vEDK13jfoiuX694A": ONNOROKOM,
+  "UCRmXGgiNjFfBs-t8LvF74Bw": ONEHOUR
 };
