@@ -3,6 +3,21 @@
 All notable changes to **FocusTube** are documented here. Adheres loosely to
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Semver until 1.0: 0.x.
 
+## [2.7.0] - 2026-10-13
+
+### Added
+
+- **Continuous delivery for every platform.** Every push to `main` now builds
+  and publishes the `.deb`, `.rpm`, `.pkg.tar.zst`, `.exe`, `.dmg` and `.apk`,
+  and refreshes a rolling **`latest`** GitHub Release, so downloads always point
+  at the newest build.
+- **RPM package + dnf repository** for Fedora/RHEL-based distros, served from
+  GitHub Pages at `/rpm/` (see `focustube.repo`).
+- **Arch Linux package + pacman repository** (`/arch/`), built by repackaging
+  the `.deb` inside an Arch container with `repo-add`.
+- The GitHub Pages APT repository is now rebuilt on every push (previously only
+  on version tags).
+
 ## [2.6.1] - 2026-10-12
 
 ### Added

@@ -63,6 +63,36 @@ The repository is served from GitHub Pages, signed with the **FocusTube Release 
 ([`focustube.asc`](https://mradifhassan.github.io/focus-tube-desktop/focustube.asc)); Snap/PPA users
 on Ubuntu find the same experience here.
 
+### Fedora / RHEL (x64) — DNF repository
+
+```bash
+sudo curl -fsSL https://mradifhassan.github.io/focus-tube-desktop/rpm/focustube.repo \
+  -o /etc/yum.repos.d/focustube.repo
+sudo dnf install focustube
+```
+
+Stay current with `sudo dnf upgrade`.
+
+### Arch Linux (x64) — pacman repository
+
+Add the repository to `/etc/pacman.conf`:
+
+```ini
+[focustube]
+SigLevel = Optional TrustAll
+Server = https://mradifhassan.github.io/focus-tube-desktop/arch
+```
+
+Then install and update with:
+
+```bash
+sudo pacman -Sy focustube      # install
+sudo pacman -Syu               # update
+```
+
+> The RPM and pacman repositories are currently **unsigned** (`gpgcheck=0` /
+> `SigLevel = Optional TrustAll`). Only the APT repository is GPG-signed.
+
 ### Windows (x64) — `.exe` installer with auto-update
 
 1. Download **`FocusTube-Setup-<version>.exe`** from the
@@ -107,15 +137,17 @@ is published, an **"update available"** banner appears in the app and opens the 
 > **⋮ → Add to Home screen**. That installs with a launcher icon too and updates itself
 > automatically, no download needed.
 
-### Manual `.deb`
+### Manual packages
 
-Download `focus-tube-desktop_<version>_amd64.deb` from the
-[Releases page](https://github.com/mradifhassan/focus-tube-desktop/releases), then:
+Download `focus-tube-desktop_<version>_amd64.deb`, `focustube-<version>.x86_64.rpm`, or
+`focustube-<version>-1-x86_64.pkg.tar.zst` from the
+[Releases page](https://github.com/mradifhassan/focus-tube-desktop/releases), then install with
+your package manager:
 
 ```bash
-sudo apt install -f ./focus-tube-desktop_2.2.0_amd64.deb
-# or
-sudo dpkg -i focus-tube-desktop_2.2.0_amd64.deb && sudo apt install -f
+sudo apt install -f ./focus-tube-desktop_2.7.0_amd64.deb   # Debian/Ubuntu
+sudo dnf install ./focustube-2.7.0.x86_64.rpm              # Fedora/RHEL
+sudo pacman -U ./focustube-2.7.0-1-x86_64.pkg.tar.zst      # Arch
 ```
 
 Launch **FocusTube** from your application menu, or run `focustube` from a terminal.

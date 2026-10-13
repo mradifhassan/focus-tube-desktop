@@ -1,43 +1,38 @@
-name: Build Debian Package
+name: Build & Release
 
 on:
   push:
     branches: [main]
     tags: ['v*']
-  pull_request:
-    branches: [main]
   workflow_dispatch:
 
 concurrency:
-  group: focustube-pages-${{ github.ref }}
+  group: focustube-${{ github.ref }}
   cancel-in-progress: false
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 jobs:
   # --------------------------------------------------------------------------
-  # Linux: .deb + APT repository + GitHub Pages
+  # Linux: .deb + .rpm
   # --------------------------------------------------------------------------
-  build:
+  linux:
+    name: Linux (deb + rpm)
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: https://mradifhassan.github.io/focus-tube-desktop/
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
           cache-dependency-path: |
             package-lock.json
             renderer/package-lock.json
+
+      - name: Install rpmbuild
+        run: sudo apt-get update && sudo apt-get install -y rpm
 
       - name: Install shell dependencies
         run: npm ci
@@ -49,62 +44,56 @@ jobs:
       - name: Build renderer (web app -> app/)
         run: npm run build:renderer
 
-      - name: Package Linux .deb
-        run: npx electron-builder --linux deb --publish never
+      - name: Package Linux .deb + .rpm
+        run: npx electron-builder --linux deb rpm --publish never
 
-      - name: Upload artifact
+      - name: Upload Linux packages
         uses: actions/upload-artifact@v4
         with:
-          name: focustube-linux-deb
+          name: linux-packages
           path: |
             dist/*.deb
+            dist/*.rpm
           if-no-files-found: error
 
-      # ---- APT repository on GitHub Pages (published on every release tag) ----
+  # --------------------------------------------------------------------------
+  # Arch Linux: .pkg.tar.zst + pacman repo (repackaged from the .deb)
+  # --------------------------------------------------------------------------
+  arch:
+    name: Arch package
+    needs: linux
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
-      - name: Install apt-tools (tag pushes only)
-        if: startsWith(github.ref, 'refs/tags/')
-        run: sudo apt-get update && sudo apt-get install -y dpkg-dev apt-utils
-
-      - name: Import release signing key (tag pushes only)
-        if: startsWith(github.ref, 'refs/tags/')
-        env:
-          FOCUSTUBE_REPO_SIGNING_KEY: ${{ secrets.FOCUSTUBE_REPO_SIGNING_KEY }}
-        run: echo "$FOCUSTUBE_REPO_SIGNING_KEY" | gpg --batch --import
-
-      - name: Build and sign APT repository (tag pushes only)
-        if: startsWith(github.ref, 'refs/tags/')
-        run: bash scripts/apt-repo.sh
-        env:
-          SIGNING_PASSPHRASE: ${{ secrets.FOCUSTUBE_REPO_SIGNING_PASSPHRASE }}
-
-      - name: Configure Pages (tag pushes only)
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: actions/configure-pages@v5
-
-      - name: Upload Pages artifact (tag pushes only)
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: actions/upload-pages-artifact@v3
+      - name: Download Linux packages
+        uses: actions/download-artifact@v4
         with:
-          path: apt-repo
+          name: linux-packages
+          path: pkgs
 
-      - name: Deploy to GitHub Pages (tag pushes only)
-        if: startsWith(github.ref, 'refs/tags/')
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Build Arch package + pacman repo
+        run: |
+          docker run --rm -v "$PWD:/w" -w /w archlinux:base-devel \
+            bash scripts/arch-repo.sh pkgs/focus-tube-desktop_*_amd64.deb pages/arch
+
+      - name: Upload Arch repo
+        uses: actions/upload-artifact@v4
+        with:
+          name: arch-repo
+          path: pages/arch
+          if-no-files-found: error
 
   # --------------------------------------------------------------------------
   # Windows: native .exe installer (NSIS)
   # --------------------------------------------------------------------------
   windows:
+    name: Windows
     runs-on: windows-latest
-    if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
@@ -125,7 +114,7 @@ jobs:
       - name: Package Windows installer (.exe)
         run: npx electron-builder --win nsis --publish never
 
-      - name: Upload artifact
+      - name: Upload Windows installer
         uses: actions/upload-artifact@v4
         with:
           name: focustube-windows
@@ -138,14 +127,12 @@ jobs:
   # macOS: native .dmg (unsigned — Gatekeeper prompt on first open)
   # --------------------------------------------------------------------------
   macos:
+    name: macOS
     runs-on: macos-latest
-    if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
@@ -168,7 +155,7 @@ jobs:
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: "false"
 
-      - name: Upload artifact
+      - name: Upload macOS apps
         uses: actions/upload-artifact@v4
         with:
           name: focustube-macos
@@ -178,17 +165,16 @@ jobs:
           if-no-files-found: error
 
   # --------------------------------------------------------------------------
-  # Android: signed APK (Capacitor) — built on tags / manual dispatch
+  # Android: signed APK (Capacitor)
   # --------------------------------------------------------------------------
   android:
+    name: Android
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
     env:
       ANDROID_HOME: /usr/local/lib/android/sdk
       ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4
@@ -196,8 +182,7 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
@@ -218,15 +203,17 @@ jobs:
       - name: Sync Capacitor (Android)
         run: npx cap sync android
 
-      - name: Set Android version from tag
+      - name: Set Android version
         env:
-          REF: ${{ github.ref_name }}
+          REF: ${{ github.ref_type == 'tag' && github.ref_name || '' }}
         run: |
           VER="${REF#v}"
+          if [ -z "$VER" ]; then
+            VER="$(node -p 'require("./package.json").version')"
+          fi
           MAJOR=$(echo "$VER" | cut -d. -f1)
           MINOR=$(echo "$VER" | cut -d. -f2)
-          PATCH=$(echo "$VER" | cut -d. -f3)
-          [ -n "$PATCH" ] || PATCH=0
+          PATCH=$(echo "$VER" | cut -d. -f3); [ -n "$PATCH" ] || PATCH=0
           echo "ANDROID_VERSION_NAME=$VER" >> "$GITHUB_ENV"
           echo "ANDROID_VERSION_CODE=$((MAJOR * 10000 + MINOR * 100 + PATCH))" >> "$GITHUB_ENV"
 
@@ -255,7 +242,7 @@ jobs:
           cp android/app/build/outputs/apk/release/app-release.apk "dist/FocusTube-${ANDROID_VERSION_NAME}.apk"
           ls -lh dist/
 
-      - name: Upload artifact
+      - name: Upload Android APK
         uses: actions/upload-artifact@v4
         with:
           name: focustube-android
@@ -263,12 +250,84 @@ jobs:
           if-no-files-found: error
 
   # --------------------------------------------------------------------------
-  # Release: combine all platform artifacts into one GitHub Release (tags only)
+  # Repositories on GitHub Pages (apt + dnf + pacman) — every push
+  # --------------------------------------------------------------------------
+  repos:
+    name: Publish apt/rpm/arch repos
+    needs: [linux, arch]
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    concurrency:
+      group: github-pages
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install repo tooling
+        run: sudo apt-get update && sudo apt-get install -y dpkg-dev apt-utils createrepo-c
+
+      - name: Download Linux packages
+        uses: actions/download-artifact@v4
+        with:
+          name: linux-packages
+          path: dist
+
+      - name: Import release signing key
+        env:
+          FOCUSTUBE_REPO_SIGNING_KEY: ${{ secrets.FOCUSTUBE_REPO_SIGNING_KEY }}
+        run: echo "$FOCUSTUBE_REPO_SIGNING_KEY" | gpg --batch --import
+
+      - name: Build apt repository
+        run: OUT_DIR=pages bash scripts/apt-repo.sh
+        env:
+          SIGNING_PASSPHRASE: ${{ secrets.FOCUSTUBE_REPO_SIGNING_PASSPHRASE }}
+
+      - name: Build rpm repository
+        run: bash scripts/rpm-repo.sh pages/rpm
+
+      - name: Add Arch repository
+        uses: actions/download-artifact@v4
+        with:
+          name: arch-repo
+          path: pages/arch
+
+      - name: Landing page
+        run: |
+          cat > pages/index.html <<'EOF'
+          <!doctype html>
+          <meta charset="utf-8">
+          <title>FocusTube packages</title>
+          <h1>FocusTube package repositories</h1>
+          <ul>
+            <li><b>Debian/Ubuntu (apt):</b> <code>deb [signed-by=...] https://mradifhassan.github.io/focus-tube-desktop stable main</code> (<a href="focustube.asc">key</a>)</li>
+            <li><b>Fedora/RHEL (dnf):</b> <a href="rpm/focustube.repo">focustube.repo</a></li>
+            <li><b>Arch (pacman):</b> <a href="arch/">/arch</a></li>
+          </ul>
+          EOF
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: pages
+
+      - uses: actions/deploy-pages@v4
+        id: deployment
+
+  # --------------------------------------------------------------------------
+  # Releases: rolling "latest" pre-release on main, versioned release on tags
   # --------------------------------------------------------------------------
   release:
+    name: Release
+    needs: [linux, arch, windows, macos, android]
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
-    needs: [build, windows, macos, android]
-    if: startsWith(github.ref, 'refs/tags/')
     permissions:
       contents: write
     steps:
@@ -281,17 +340,47 @@ jobs:
       - name: List artifacts
         run: ls -lh dist/
 
-      - name: Create release
+      - name: Clear rolling release assets
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view latest --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release view latest --repo "$GITHUB_REPOSITORY" --json assets -q '.assets[].name' |
+              while IFS= read -r n; do
+                [ -n "$n" ] && gh release delete-asset latest "$n" --repo "$GITHUB_REPOSITORY" -y
+              done
+          fi
+
+      - name: Rolling "latest" release (branch push)
+        if: github.ref == 'refs/heads/main'
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: latest
+          name: Latest build
+          prerelease: false
+          make_latest: true
           files: |
             dist/*.deb
+            dist/*.rpm
+            dist/*.pkg.tar.zst
             dist/*.exe
             dist/*.dmg
             dist/*.apk
-            dist/latest.yml
-            dist/latest-mac.yml
-          draft: true
+            dist/*.yml
+
+      - name: Versioned release (tag push)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          draft: false
+          make_latest: true
           generate_release_notes: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          files: |
+            dist/*.deb
+            dist/*.rpm
+            dist/*.pkg.tar.zst
+            dist/*.exe
+            dist/*.dmg
+            dist/*.apk
+            dist/*.yml
