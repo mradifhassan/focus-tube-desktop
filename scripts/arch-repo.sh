@@ -19,7 +19,8 @@ out="${2:?usage: arch-repo.sh <deb-file> <out-dir>}"
 
 [ -f "$deb" ] || { echo "error: no such deb: $deb" >&2; exit 1; }
 deb="$(readlink -f "$deb")"
-out="$(readlink -f "$out" 2>/dev/null || echo "$out")"
+mkdir -p "$out"
+out="$(cd "$out" && pwd)"
 
 work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
