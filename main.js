@@ -189,8 +189,16 @@ function setupWinAutoUpdater() {
     console.error('Auto-update error:', err && err.message);
   });
 
-  autoUpdater.checkForUpdatesAndNotify().catch(() => {});
-  setInterval(() => autoUpdater.checkForUpdates().catch(() => {}), 4 * 60 * 60 * 1000);
+  // A missing/corrupt app-update.yml (portable builds, offline, etc.) must never
+  // abort startup — guard the first check synchronously.
+  try {
+    autoUpdater.checkForUpdatesAndNotify().catch(() => {});
+  } catch (err) {
+    console.error('Update check skipped:', err && err.message);
+  }
+  setInterval(() => {
+    try { autoUpdater.checkForUpdates().catch(() => {}); } catch (_) {}
+  }, 4 * 60 * 60 * 1000);
 }
 
 function buildAppMenu() {

@@ -31,9 +31,9 @@ export const watchViewMixin = {
     return `
       <!-- TOP BACK BUTTON RAIL -->
       <div class="sticky top-0 z-30 bg-[#0f0f0f] px-3 sm:px-6 py-3 border-b border-[#272727] flex flex-wrap items-center justify-between gap-2">
-        <button id="watch-back-btn" class="flex items-center gap-2 px-3 sm:px-4 py-2 bg-[#272727] hover:bg-[#3f3f3f] text-white font-bold text-xs sm:text-sm rounded-full transition shadow">
+        <button id="watch-back-btn" class="flex items-center gap-2 px-3 sm:px-4 py-2 bg-[#272727] hover:bg-[#3f3f3f] active:bg-[#4a4a4a] text-white font-bold text-xs sm:text-sm rounded-full transition shadow">
           <span>&larr;</span>
-          <span>Back (${this.watchHistoryStack.length > 0 ? 'Previous Video' : 'Home'})</span>
+          <span>Back</span>
         </button>
 
         <span class="text-[10px] sm:text-xs font-semibold px-3 py-1 rounded-full bg-[#272727] text-[#aaa]">
@@ -108,11 +108,7 @@ export const watchViewMixin = {
 
           <!-- DESCRIPTION BOX -->
           <div class="bg-[#1f1f1f] hover:bg-[#272727]/80 rounded-2xl p-4 transition cursor-pointer flex flex-col gap-2" id="toggle-desc-box">
-            <div class="flex items-center gap-3 text-xs font-bold text-white">
-              <span>${vid.views || '1,240 views'}</span>
-              <span>${vid.publishedText || 'Recently'}</span>
-            </div>
-            <p class="text-xs text-[#ddd] ${this.descriptionExpanded ? '' : 'line-clamp-2'} whitespace-pre-line leading-relaxed">${vid.description || 'Watch full video stream on FreeTube interface.'}</p>
+            <p class="text-xs text-[#ddd] ${this.descriptionExpanded ? '' : 'line-clamp-2'} whitespace-pre-line leading-relaxed select-text">${vid.description || 'Watch full video stream on FreeTube interface.'}</p>
             <span class="text-xs font-bold text-[#aaa] mt-1">${this.descriptionExpanded ? 'Show less' : '...more'}</span>
           </div>
 
@@ -143,7 +139,7 @@ export const watchViewMixin = {
                   </button>
                 </div>
               </div>
-              <div class="max-h-[70vh] lg:max-h-[600px] overflow-y-auto flex flex-col">
+              <div class="lg:max-h-[600px] lg:overflow-y-auto flex flex-col">
                 ${plIds.map((id, i) => {
                   const v = allVids.find(x => x.id === id) || { id, title: 'YouTube Broadcast (' + id + ')', thumbnail: 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg', channelName: this.selectedPlaylist.channelName, channelId: vid.channelId };
                   const active = id === vid.id;
@@ -172,15 +168,14 @@ export const watchViewMixin = {
 
             <div class="flex flex-col gap-3">
               ${upNext.map(v => `
-                <div data-related-vid="${v.id}" data-ch="${v.channelId}" class="flex gap-3 p-2 rounded-xl hover:bg-[#272727] transition cursor-pointer group">
-                  <div class="relative w-40 aspect-video rounded-lg overflow-hidden bg-[#222] shrink-0">
+                <div data-related-vid="${v.id}" data-ch="${v.channelId}" class="flex gap-3 p-2 rounded-xl hover:bg-[#272727] active:bg-[#333] transition cursor-pointer group">
+                  <div class="relative w-32 sm:w-40 aspect-video rounded-lg overflow-hidden bg-[#222] shrink-0">
                     <img src="${v.thumbnail}" alt="${v.title}" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition" />
                     <span class="absolute bottom-1 right-1 px-1 rounded bg-black/80 text-white text-[10px] font-mono">${v.duration}</span>
                   </div>
                   <div class="flex flex-col gap-1 flex-1 overflow-hidden">
                     <h4 class="text-xs font-semibold text-white line-clamp-2 leading-snug group-hover:text-[#3ea6ff]">${v.title}</h4>
                     <p class="text-[11px] text-[#aaa] truncate">${v.channelName}</p>
-                    <p class="text-[10px] text-[#888]">${v.views}</p>
                   </div>
                 </div>
               `).join('')}
@@ -264,15 +259,22 @@ export const watchViewMixin = {
     const backBtn = document.getElementById('watch-back-btn');
     if (backBtn) {
       backBtn.onclick = () => {
-        if (this.watchHistoryStack.length > 0) {
-          const prev = this.watchHistoryStack.pop();
-          this.watchVideo = prev;
+        // Prefer real history so hardware/Electron back stays in sync; fall back
+        // to popping the in-page video stack, then to Home.
+        if (window.history.length > 1) {
+          window.history.back();
+        } else if (this.watchHistoryStack.length > 0) {
+          this.watchVideo = this.watchHistoryStack.pop();
+          this.scrollMainToTop();
           this.renderBody();
+          this.syncHash();
         } else {
           this.watchVideo = null;
+          this.activeView = 'home';
+          this.scrollMainToTop();
           this.renderBody();
+          this.syncHash();
         }
-        this.syncHash();
       };
     }
 
@@ -296,9 +298,10 @@ export const watchViewMixin = {
         const found = all.find(v => v.id === vidId) || { id: vidId, title: "YouTube Stream", channelId: el.getAttribute('data-ch') };
 
         // Clicks from the playlist queue panel keep the playlist context (so autoplay keeps working);
-        // clicks from the plain "More from this channel" list are standalone.
+        // clicks from the plain "More from this channel" list are re-detected so we still land in
+        // a playlist queue if this video belongs to one.
         if (!el.hasAttribute('data-in-playlist')) {
-          this.selectedPlaylist = null;
+          this.selectedPlaylist = this.findPlaylistForVideo(found);
         }
 
         if (this.watchVideo) {

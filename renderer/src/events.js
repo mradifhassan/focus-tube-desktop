@@ -13,6 +13,34 @@ export const eventsMixin = {
         this.render();
       }
 
+      // Mobile bottom tab bar
+      const navAction = e.target.closest('[data-nav-action]');
+      if (navAction) {
+        const action = navAction.getAttribute('data-nav-action');
+        if (action === 'channels') {
+          // Open the drawer (it lists every subscribed channel) instead of a
+          // hidden hamburger; the bottom tab makes it discoverable on mobile.
+          this.watchVideo = null;
+          this.sidebarExpanded = true;
+          this.render();
+          return;
+        }
+        if (action === 'search') {
+          const sInput = document.getElementById('yt-search-input');
+          if (sInput) sInput.focus();
+          return;
+        }
+        this.watchVideo = null;
+        this.activeView = action;
+        if (action === 'home') this.feedFilter = 'all';
+        this.selectedChannelId = null;
+        this.selectedPlaylist = null;
+        this.scrollMainToTop();
+        this.render();
+        this.syncHash();
+        return;
+      }
+
       // Tapping the backdrop closes the mobile drawer
       if (e.target.id === 'sidebar-backdrop') {
         this.sidebarExpanded = false;
@@ -28,9 +56,11 @@ export const eventsMixin = {
       if (e.target.closest('#nav-logo-btn')) {
         this.watchVideo = null;
         this.activeView = 'home';
+        this.feedFilter = 'all';
         this.selectedChannelId = null;
         this.selectedPlaylist = null;
         this.searchQuery = '';
+        this.scrollMainToTop();
         this.renderBody();
         this.syncHash();
       }
@@ -40,8 +70,10 @@ export const eventsMixin = {
       if (navItem) {
         this.watchVideo = null;
         this.activeView = navItem.getAttribute('data-nav');
+        if (this.activeView === 'home') this.feedFilter = 'all';
         this.selectedChannelId = null;
         this.selectedPlaylist = null;
+        this.scrollMainToTop();
         this.render();
         this.syncHash();
       }
@@ -75,19 +107,44 @@ export const eventsMixin = {
         return;
       }
 
-      // Back button in Playlist Detail View
+      // Back button in Playlist Detail View — return to wherever the user came
+      // from (channel tab, search results, library) via real history, falling
+      // back to the library only when there is no history to go back to.
       if (e.target.closest('#playlist-back-btn')) {
-        this.activeView = 'library';
-        this.selectedPlaylist = null;
-        this.render();
-        this.syncHash();
+        if (window.history.length > 1) {
+          window.history.back();
+        } else {
+          this.activeView = 'library';
+          this.selectedPlaylist = null;
+          this.render();
+          this.syncHash();
+        }
+        return;
+      }
+
+      // Back button on the Channel page
+      if (e.target.closest('#channel-back-btn')) {
+        this.goBack();
         return;
       }
 
       // Feed Category Filter chips
       const filterChip = e.target.closest('[data-filter]');
       if (filterChip) {
-        this.feedFilter = filterChip.getAttribute('data-filter');
+        const filter = filterChip.getAttribute('data-filter');
+        if (filter === 'playlists') {
+          // Navigate to the real "Saved Playlists" view (gets its own hash, so
+          // the back button and sidebar both work) instead of trapping the feed.
+          this.watchVideo = null;
+          this.activeView = 'library';
+          this.selectedChannelId = null;
+          this.selectedPlaylist = null;
+          this.scrollMainToTop();
+          this.render();
+          this.syncHash();
+          return;
+        }
+        this.feedFilter = filter;
         document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
         filterChip.classList.add('active');
         this.renderBody();
@@ -97,6 +154,7 @@ export const eventsMixin = {
       const chTab = e.target.closest('[data-ch-tab]');
       if (chTab) {
         this.channelTab = chTab.getAttribute('data-ch-tab');
+        this.scrollMainToTop();
         this.renderBody();
       }
 
@@ -109,8 +167,10 @@ export const eventsMixin = {
 
         // Only keep playlist queue/autoplay context when the click came from a playlist-aware card
         // (the playlist detail page, or the in-watch-page playlist queue panel).
+        // Otherwise, auto-detect the playlist this video belongs to so the watch page still
+        // shows the full playlist queue in the sidebar instead of random channel suggestions.
         if (!vidCard.hasAttribute('data-in-playlist')) {
-          this.selectedPlaylist = null;
+          this.selectedPlaylist = this.findPlaylistForVideo(found);
         }
 
         this.watchHistoryStack = [];
@@ -177,7 +237,11 @@ export const eventsMixin = {
           this.searchQuery = sInput.value.trim();
           this.activeView = 'search';
           this.watchVideo = null;
+          this.selectedChannelId = null;
+          this.selectedPlaylist = null;
+          this.scrollMainToTop();
           this.render();
+          this.syncHash();
         }
       }
 
@@ -185,7 +249,10 @@ export const eventsMixin = {
       if (e.target.closest('#clear-search-btn')) {
         this.searchQuery = '';
         this.activeView = 'home';
+        this.watchVideo = null;
+        this.scrollMainToTop();
         this.render();
+        this.syncHash();
       }
     });
 
@@ -199,7 +266,11 @@ export const eventsMixin = {
           this.searchQuery = val;
           this.activeView = 'search';
           this.watchVideo = null;
+          this.selectedChannelId = null;
+          this.selectedPlaylist = null;
+          this.scrollMainToTop();
           this.render();
+          this.syncHash();
         }
       }
     });

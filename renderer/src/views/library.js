@@ -10,8 +10,8 @@ export const libraryViewMixin = {
   renderLibraryPageHtml() {
     const pls = this.getAllCachedPlaylists();
     return `
-      <div class="p-6 lg:p-10 flex flex-col gap-6">
-        <h1 class="text-2xl font-bold text-white">Saved Playlists (${pls.length})</h1>
+      <div class="p-3 sm:p-6 lg:p-10 flex flex-col gap-6">
+        <h1 class="text-xl sm:text-2xl font-bold text-white">Saved Playlists (${pls.length})</h1>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           ${pls.map(pl => `
             <div data-pl="${pl.id}" class="bg-[#1f1f1f] rounded-2xl overflow-hidden hover:bg-[#272727] transition cursor-pointer flex flex-col group border border-[#272727]">

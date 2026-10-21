@@ -14,8 +14,6 @@ export const playlistViewMixin = {
         id: vidId,
         title: "YouTube Broadcast (" + vidId + ")",
         duration: "15:40",
-        views: "124K views",
-        publishedText: "Recently",
         thumbnail: "https://i.ytimg.com/vi/" + vidId + "/hqdefault.jpg",
         channelId: playlist.channelId || "UC8SDY8Wr6s6DIofumkZGfxg",
         channelName: playlist.channelName || "YouTube Channel"
@@ -24,15 +22,15 @@ export const playlistViewMixin = {
 
     return `
       <!-- BREADCRUMB HEADER -->
-      <div class="sticky top-0 z-20 bg-[#0f0f0f]/95 backdrop-blur px-6 py-3 border-b border-[#272727] flex items-center gap-3">
-        <button id="playlist-back-btn" class="flex items-center gap-2 px-4 py-1.5 bg-[#272727] hover:bg-[#3f3f3f] text-white font-semibold text-xs rounded-full transition">
-          <span>&larr;</span> Back to Playlists
+      <div class="sticky top-0 z-20 bg-[#0f0f0f]/95 backdrop-blur px-4 sm:px-6 py-3 border-b border-[#272727] flex items-center gap-3">
+        <button id="playlist-back-btn" class="flex items-center gap-2 px-4 py-2 bg-[#272727] hover:bg-[#3f3f3f] active:bg-[#4a4a4a] text-white font-semibold text-xs rounded-full transition shrink-0">
+          <span>&larr;</span> Back
         </button>
-        <span class="text-sm font-bold text-white ml-2">Playlist</span>
-        <span class="text-xs text-[#aaa] truncate">&bull; ${playlist.title}</span>
+        <span class="text-sm font-bold text-white ml-2 shrink-0">Playlist</span>
+        <span class="text-xs text-[#aaa] truncate min-w-0 flex-1">&bull; ${playlist.title}</span>
       </div>
 
-      <div class="p-6 lg:p-10 flex flex-col lg:flex-row gap-8 max-w-7xl mx-auto">
+      <div class="p-4 sm:p-6 lg:p-10 flex flex-col lg:flex-row gap-6 sm:gap-8 max-w-7xl mx-auto">
         <!-- LEFT RAIL (STICKY CARD) -->
         <div class="w-full lg:w-80 shrink-0">
           <div class="sticky top-20 bg-gradient-to-b from-[#303030] to-[#1a1a1a] rounded-3xl p-6 border border-[#383838] flex flex-col gap-5 shadow-2xl">
@@ -70,14 +68,13 @@ export const playlistViewMixin = {
           ${plVideos.map((v, idx) => `
             <div data-vid="${v.id}" data-ch="${v.channelId}" data-in-playlist="true" class="yt-list-row flex items-center gap-4 p-3 rounded-2xl hover:bg-[#272727] transition cursor-pointer group border border-transparent hover:border-[#383838] ${this.watchVideo && this.watchVideo.id === v.id ? 'bg-[#272727] border-[#383838]' : ''}">
               <span class="text-sm font-mono text-[#888] w-6 text-center shrink-0 group-hover:text-white font-bold">${idx + 1}</span>
-              <div class="relative w-40 sm:w-48 aspect-video rounded-xl overflow-hidden bg-[#222] shrink-0">
+              <div class="relative w-28 sm:w-48 aspect-video rounded-xl overflow-hidden bg-[#222] shrink-0">
                 <img src="${v.thumbnail}" alt="${v.title}" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
                 <span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-white text-[10px] font-mono">${v.duration}</span>
               </div>
               <div class="flex flex-col gap-1 flex-1 min-w-0">
                 <h3 class="text-sm font-semibold text-white line-clamp-2 leading-snug group-hover:text-[#3ea6ff] transition">${v.title}</h3>
                 <p class="text-xs text-[#aaa] truncate">${v.channelName}</p>
-                <p class="text-[11px] text-[#777]">${v.views} &bull; ${v.publishedText}</p>
               </div>
             </div>
           `).join('')}

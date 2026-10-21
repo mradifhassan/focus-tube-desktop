@@ -7,7 +7,7 @@
  */
 
 import { INVIDIOUS_INSTANCES } from './data/instances.js';
-import { formatSeconds, formatNumber } from './utils.js';
+import { formatSeconds } from './utils.js';
 
 const FETCH_TIMEOUT_MS = 3500;
 
@@ -61,8 +61,6 @@ export const apiMixin = {
       id: v.videoId,
       title: v.title,
       duration: formatSeconds(v.lengthSeconds || 420),
-      views: `${formatNumber(v.viewCount || 1500)} views`,
-      publishedText: v.publishedText || 'Recently',
       thumbnail: v.videoThumbnails ? v.videoThumbnails[0].url : `https://i.ytimg.com/vi/${v.videoId}/hqdefault.jpg`,
       channelId: channelId,
       channelName: v.author || 'YouTube Channel',

@@ -17,6 +17,26 @@ body {
   overflow-x: hidden;
 }
 
+/* Safe-area insets for Android 15 edge-to-edge / notched devices. The navbar
+   and bottom nav pad themselves; the app shell exposes helpers so the content
+   never hides under the status bar or gesture bar. */
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --bottom-nav-h: 0px;
+}
+/* Only reserve space for the bottom tab bar below the lg breakpoint, where it
+   is actually shown (it is hidden via `lg:hidden`). */
+@media (max-width: 1023.98px) {
+  :root { --bottom-nav-h: 3.5rem; }
+}
+.pt-safe-top { padding-top: var(--safe-top); }
+.pb-safe-bottom { padding-bottom: var(--safe-bottom); }
+/* Adds room so the last content isn't hidden behind the mobile bottom nav. */
+.pb-nav { padding-bottom: calc(var(--bottom-nav-h) + var(--safe-bottom)); }
+
 /* YouTube Standard Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -91,19 +111,38 @@ body {
 /* Tab Underline Animation */
 .yt-tab {
   position: relative;
-  padding: 12px 24px;
-  font-size: 15px;
+  padding: 12px 16px;
+  font-size: 14px;
   font-weight: 500;
   color: #aaa;
   cursor: pointer;
   border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .yt-tab:hover {
   color: #f1f1f1;
 }
+.yt-tab:active {
+  background-color: rgba(255, 255, 255, 0.08);
+}
 .yt-tab.active {
   color: #f1f1f1;
   border-bottom-color: #f1f1f1;
+}
+
+/* Tap feedback: Tailwind v4 gates hover: behind @media (hover:hover), so on
+   touch devices there is zero feedback. Give every clickable card/row a real
+   pressed state that works on both touch and mouse. */
+.yt-video-card:active,
+.yt-list-row:active {
+  opacity: 0.7;
+}
+.yt-sidebar-item:active {
+  background-color: #333;
+}
+.yt-chip:active {
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 

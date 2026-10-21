@@ -26,7 +26,7 @@ export const isolatedViewMixin = {
 
           <div class="flex items-center justify-between">
             <span class="text-xs font-bold px-3 py-1 rounded-full bg-[#272727] text-[#aaa]">Isolated Video &bull; No Suggestions</span>
-            <a href="${window.location.pathname}" class="text-xs text-[#3ea6ff] hover:underline">Exit to FocusTube</a>
+            <button id="isolated-back-btn" class="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full bg-[#272727] hover:bg-[#3f3f3f] active:bg-[#4a4a4a] text-[#3ea6ff] transition">&larr; Back to FocusTube</button>
           </div>
 
           <!-- FACADE: the YouTube embed is only created on click (façade pattern) --
@@ -65,6 +65,17 @@ export const isolatedViewMixin = {
     }
 
     this.wireFacadeEvents('isolated-player-facade', this.hydrateIsolatedFacade);
+
+    const isoBack = document.getElementById('isolated-back-btn');
+    if (isoBack) {
+      isoBack.onclick = () => {
+        if (window.history.length > 1) {
+          window.history.back();
+        } else {
+          window.location.hash = '#/';
+        }
+      };
+    }
 
     if (!vid) {
       this.fetchIsolatedVideoMeta(id);

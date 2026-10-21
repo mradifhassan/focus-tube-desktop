@@ -18,8 +18,15 @@ export const channelViewMixin = {
           <div class="absolute inset-0 bg-[radial-gradient(#ff0000_1px,transparent_1px)] [background-size:16px_16px] opacity-20"></div>
         </div>
 
+        <!-- BACK RAIL -->
+        <div class="px-4 sm:px-6 lg:px-16 pt-4">
+          <button id="channel-back-btn" class="flex items-center gap-2 px-4 py-2 bg-[#272727] hover:bg-[#3f3f3f] active:bg-[#4a4a4a] text-white font-semibold text-xs rounded-full transition">
+            <span>&larr;</span> Back
+          </button>
+        </div>
+
         <!-- CHANNEL HEADER -->
-        <div class="px-6 lg:px-16 pt-6 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-b border-[#272727]">
+        <div class="px-4 sm:px-6 lg:px-16 pt-6 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-b border-[#272727]">
           <div class="flex items-center gap-5">
             <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full ${channel.avatarColor || 'bg-red-600'} text-white font-black text-3xl flex items-center justify-center shadow-xl shrink-0 border-2 border-[#272727]">
               ${channel.initials || 'CH'}
@@ -42,28 +49,15 @@ export const channelViewMixin = {
         </div>
 
         <!-- CHANNEL TABS -->
-        <div class="px-6 lg:px-16 flex items-center border-b border-[#272727] bg-[#0f0f0f]">
+        <div class="px-4 sm:px-6 lg:px-16 flex items-center border-b border-[#272727] bg-[#0f0f0f] overflow-x-auto">
           <div data-ch-tab="videos" class="yt-tab ${this.channelTab === 'videos' ? 'active' : ''}">Videos (${vids.length})</div>
           <div data-ch-tab="playlists" class="yt-tab ${this.channelTab === 'playlists' ? 'active' : ''}">Playlists (${pls.length})</div>
           <div data-ch-tab="about" class="yt-tab ${this.channelTab === 'about' ? 'active' : ''}">About Channel</div>
         </div>
 
         <!-- TAB BODY CONTENT -->
-        <div class="p-6 lg:px-16 pt-8">
-          ${this.channelTab === 'videos' ? `
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 gap-y-8">
-              ${vids.map(v => `
-                <div data-vid="${v.id}" data-ch="${channel.id}" class="yt-video-card flex flex-col gap-2.5 group">
-                  <div class="relative aspect-video rounded-xl overflow-hidden bg-[#222]">
-                    <img src="${v.thumbnail}" alt="${v.title}" loading="lazy" decoding="async" class="yt-thumb-img w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-                    <span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-white text-xs font-mono">${v.duration}</span>
-                  </div>
-                  <h3 class="text-sm font-semibold text-white line-clamp-2 leading-snug group-hover:text-[#3ea6ff]">${v.title}</h3>
-                  <p class="text-xs text-[#aaa]">${v.views} &bull; ${v.publishedText}</p>
-                </div>
-              `).join('')}
-            </div>
-          ` : this.channelTab === 'playlists' ? `
+        <div class="p-4 sm:p-6 lg:px-16 pt-8">
+          ${this.channelTab === 'videos' ? this.pagedVideoGridHtml(() => vids) : this.channelTab === 'playlists' ? `
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               ${pls.map(pl => `
                 <div data-pl="${pl.id}" class="bg-[#1f1f1f] rounded-2xl overflow-hidden hover:bg-[#272727] transition cursor-pointer flex flex-col group border border-[#272727]">
