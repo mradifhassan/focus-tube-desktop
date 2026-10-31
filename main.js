@@ -16,11 +16,32 @@ const { autoUpdater } = require('electron-updater');
 // some setups shortly after launch ("GPU process isn't usable. Goodbye"), taking
 // the whole app with it. XWayland exposes a working X11/EGL path even when
 // native Wayland GPU fails, so route Linux/Wayland sessions through it. That
-// keeps hardware acceleration (snappy UI, smooth video compositing) on machines
-// where the Wayland GPU backend is broken — software-only rendering previously
-// made every click/scroll sluggish (SwiftShader software rasterization).
+// keeps hardware acceleration on machines where the Wayland GPU backend is
+// broken. If XWayland routing still causes the GPU process to segfault (as seen
+// on some Ubuntu/Wayland setups), fall back to software rendering entirely so
+// the app at least launches.
 if (process.platform === 'linux' && process.env.XDG_SESSION_TYPE === 'wayland') {
   app.commandLine.appendSwitch('ozone-platform', 'x11');
+  // Disable GPU acceleration on Wayland to avoid the GPU-process segfault
+  // that occurs on some Ubuntu/Wayland configurations even with XWayland.
+  app.disableHardwareAcceleration();
+}
+
+// On Ubuntu 24.04+ AppArmor restricts unprivileged user namespaces, so
+// Chromium needs the setuid chrome-sandbox helper. The deb postinst sets it
+// to 4755; if it's missing or not setuid, fall back to software rendering
+// (disable GPU) so the app still launches instead of crashing silently.
+if (process.platform === 'linux') {
+  const fs = require('node:fs');
+  const sandbox = path.join(process.resourcesPath, '..', 'chrome-sandbox');
+  let sandboxOk = false;
+  try {
+    const st = fs.statSync(sandbox);
+    sandboxOk = st.mode & 0o4000; // setuid bit
+  } catch (_) {}
+  if (!sandboxOk) {
+    app.disableHardwareAcceleration();
+  }
 }
 
 const DEFAULT_PORT = 18732;
@@ -424,6 +445,7 @@ if (!gotLock) {
     if (process.platform !== 'darwin') app.quit();
   });
 
+  let launchAttempted = false;
   app.whenReady().then(async () => {
     try {
       const port = await startServer();
@@ -432,7 +454,25 @@ if (!gotLock) {
       setupWinAutoUpdater();
     } catch (err) {
       console.error('Failed to start FocusTube:', err);
-      app.quit();
+      // On Linux/Wayland, if the GPU/compositor crashes, retry once with
+      // hardware acceleration disabled so the app still opens.
+      if (process.platform === 'linux' && !launchAttempted) {
+        launchAttempted = true;
+        app.disableHardwareAcceleration();
+        app.whenReady().then(async () => {
+          try {
+            const port = await startServer();
+            createWindow(port);
+            buildAppMenu();
+            setupWinAutoUpdater();
+          } catch (err2) {
+            console.error('Failed to start FocusTube (fallback):', err2);
+            app.quit();
+          }
+        });
+      } else {
+        app.quit();
+      }
     }
   });
 
