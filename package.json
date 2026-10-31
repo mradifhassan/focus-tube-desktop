@@ -35,7 +35,8 @@
     "@capacitor/assets": "^3.0.5",
     "@capacitor/cli": "^7.0.1",
     "electron": "^45.1.0",
-    "electron-builder": "^26.18.0"
+    "electron-builder": "^26.18.0",
+    "typescript": "^5.8.2"
   },
   "build": {
     "appId": "com.focustube.desktop",
