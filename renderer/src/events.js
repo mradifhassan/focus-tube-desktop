@@ -192,18 +192,6 @@ export const eventsMixin = {
         this.syncHash();
       }
 
-      // Open Add Channel Modal
-      if (e.target.closest('#add-channel-modal-btn') || e.target.closest('#sidebar-add-ch-btn')) {
-        this.showAddModal = true;
-        this.render();
-      }
-
-      // Close Add Channel Modal
-      if (e.target.closest('#close-add-modal') || e.target.closest('#cancel-add-btn')) {
-        this.showAddModal = false;
-        this.render();
-      }
-
       // Open User Modal
       if (e.target.closest('#change-user-modal-btn')) {
         this.showUserModal = true;
@@ -214,20 +202,6 @@ export const eventsMixin = {
       if (e.target.closest('#close-user-modal')) {
         this.showUserModal = false;
         this.render();
-      }
-
-      // Unsubscribe Channel
-      const delCh = e.target.closest('[data-del-ch]');
-      if (delCh) {
-        const dId = delCh.getAttribute('data-del-ch');
-        if (confirm("Unsubscribe from this channel?")) {
-          this.subscribedChannels = this.subscribedChannels.filter(c => c.id !== dId);
-          this.saveChannels();
-          this.activeView = 'home';
-          this.selectedChannelId = null;
-          this.render();
-          this.syncHash();
-        }
       }
 
       // Submit Search Btn
@@ -275,71 +249,23 @@ export const eventsMixin = {
       }
     });
 
-    // Add Channel Form Submit
+    // Edit Username Form
     document.addEventListener('submit', async (e) => {
-      if (e.target && e.target.id === 'add-ch-form') {
-        e.preventDefault();
-        const input = document.getElementById('add-ch-input');
-        const status = document.getElementById('add-modal-status');
-        if (!input) return;
-        const val = input.value.trim();
-
-        status.classList.remove('hidden');
-        status.textContent = "Fetching channel information...";
-
-        let chId = val;
-        let handle = '';
-        let name = val;
-
-        if (val.includes('youtube.com/')) {
-          const match = val.match(/@([a-zA-Z0-9_.-]+)/);
-          if (match) { handle = '@' + match[1]; name = match[1]; }
-          const idMatch = val.match(/channel\/(UC[a-zA-Z0-9_-]+)/);
-          if (idMatch) chId = idMatch[1];
-        } else if (val.startsWith('@')) {
-          handle = val; name = val.substring(1);
-        }
-
-        if (!chId.startsWith('UC')) {
-          let h = 0;
-          for (let i=0; i<val.length; i++) h = ((h<<5)-h)+val.charCodeAt(i)|0;
-          chId = 'UC_LOCAL_' + Math.abs(h).toString(16).toUpperCase();
-        }
-
-        const newCh = {
-          id: chId,
-          name: name,
-          handle: handle || '@channel',
-          avatarColor: ['bg-red-600', 'bg-blue-600', 'bg-emerald-600', 'bg-purple-600', 'bg-amber-600'][Math.floor(Math.random()*5)],
-          initials: name.substring(0,2).toUpperCase(),
-          subscriberCount: "Subscribed",
-          description: `Channel added via link (${val}).`
-        };
-
-        if (!this.subscribedChannels.some(c => c.id === newCh.id)) {
-          this.subscribedChannels.push(newCh);
-          this.saveChannels();
-        }
-
-        status.textContent = "Success! Loading videos...";
-        await this.fetchLiveChannelData(newCh.id);
-
-        setTimeout(() => {
-          this.showAddModal = false;
-          this.selectedChannelId = newCh.id;
-          this.activeView = 'channel';
-          this.render();
-          this.syncHash();
-        }, 600);
-      }
-
-      // Edit Username Form
       if (e.target && e.target.id === 'edit-user-form') {
         e.preventDefault();
         const uInput = document.getElementById('edit-username-input');
         if (uInput) {
-          this.userName = uInput.value.trim() || 'Radif Hassan';
-          localStorage.setItem('yt_user_name', this.userName);
+          this.userName = uInput.value.trim();
+          if (this.userName) {
+            localStorage.setItem('yt_user_name', this.userName);
+          } else {
+            this.userName = localStorage.getItem('yt_user_name') || '';
+            if (!this.userName) {
+              this.showUserModal = false;
+              this.render();
+              return;
+            }
+          }
           this.showUserModal = false;
           this.render();
         }

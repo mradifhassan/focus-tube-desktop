@@ -109,12 +109,43 @@ function isNewerThan(tag, current) {
   return false;
 }
 
+// Resolve the highest real versioned release (ignores the rolling release
+// tagged literally "latest" that would otherwise hijack /releases/latest and
+// make version comparison silently fail — see renderer/src/updater.js).
+async function fetchLatestVersionedRelease() {
+  const releases = await fetchJson(
+    `https://api.github.com/repos/${GITHUB_REPO}/releases?per_page=30`
+  );
+  if (!Array.isArray(releases)) return null;
+  let best = null;
+  let bestParts = null;
+  for (const r of releases) {
+    if (!r || r.draft || r.prerelease) continue;
+    const tag = String(r.tag_name || '');
+    if (!/^v?\d+\.\d+\.\d+$/.test(tag)) continue;
+    const parts = parseVersion(tag);
+    if (!bestParts || isNewerThanParts(parts, bestParts)) {
+      best = r;
+      bestParts = parts;
+    }
+  }
+  return best;
+}
+
+function isNewerThanParts(a, b) {
+  const len = Math.max(a.length, b.length);
+  for (let i = 0; i < len; i++) {
+    const x = a[i] || 0;
+    const y = b[i] || 0;
+    if (x !== y) return x > y;
+  }
+  return false;
+}
+
 async function checkForUpdatesFromMenu() {
   try {
-    const release = await fetchJson(
-      `https://api.github.com/repos/${GITHUB_REPO}/releases/latest`
-    );
-    const latest = String(release.tag_name || '').replace(/^v/i, '');
+    const release = await fetchLatestVersionedRelease();
+    const latest = release ? String(release.tag_name || '').replace(/^v/i, '') : '';
     const current = app.getVersion();
     const dialogOpts = {
       type: 'info',
@@ -231,6 +262,18 @@ function handleRequest(req, res) {
   }
   if (urlPath === '/' || urlPath === '') urlPath = '/index.html';
 
+  // Expose the running shell version to the renderer so the web layer's update
+  // checker (renderer/src/updater.js) can compare it against GitHub releases.
+  if (urlPath === '/__focustube_version.js') {
+    const js = `window.__FOCUSTUBE_VERSION__=${JSON.stringify(app.getVersion())};`;
+    res.writeHead(200, {
+      'Content-Type': 'application/javascript; charset=utf-8',
+      'Cache-Control': 'no-store',
+    });
+    res.end(js);
+    return;
+  }
+
   const rel = urlPath.replace(/^\/+/, '');
   const filePath = path.join(APP_DIR, rel);
 
@@ -290,6 +333,39 @@ function startServer() {
   });
 }
 
+// Returns true for links the YouTube embed player spawns (pause overlay "More videos",
+// end-screen suggestions, share, "Watch on YouTube" CTAs). These always point at
+// youtube.com/youtu.be and must be blocked so the player can't navigate the user out.
+function isYoutubePlayerPopup(url) {
+  return /^https?:\/\/(www\.|m\.)?(youtube\.com|youtu\.be|youtube-nocookie\.com)\//i.test(url || '');
+}
+
+// Injects CSS into a YouTube embed frame to hide the pause "More videos" overlay and
+// the end-screen suggestion wall. No-ops for the app's own frames.
+function injectYoutubeFrameCleanup(wc, frameProcessId, frameRoutingId) {
+  let url = '';
+  try {
+    const frame = wc.mainFrame.frames.find(
+      (f) => f.processId === frameProcessId && f.routingId === frameRoutingId
+    );
+    if (frame) url = frame.url || '';
+  } catch (e) {
+    url = '';
+  }
+  if (!/^https?:\/\/(www\.|m\.)?(youtube\.com|youtube-nocookie\.com)\/embed\//i.test(url)) {
+    return;
+  }
+  wc.insertCSS(
+    [
+      '.ytp-pause-overlay, .ytp-pause-overlay-container, .ytp-expand-pause-overlay { display: none !important; }',
+      '.ytp-suggested-action, .ytp-ce-element, .ytp-cards-teaser { display: none !important; }',
+      '.html5-endscreen, .ytp-endscreen-content, .videowall-endscreen, .ytp-videowall-still { display: none !important; }',
+      '.ytp-watermark, .ytp-youtube-button { display: none !important; }',
+    ].join('\n'),
+    { cssOrigin: 'user' }
+  ).catch(() => {});
+}
+
 function createWindow(port) {
   mainWindow = new BrowserWindow({
     width: 1280,
@@ -310,10 +386,22 @@ function createWindow(port) {
 
   mainWindow.loadURL(`http://127.0.0.1:${port}/`);
 
-  // Any link that opens a new window (target=_blank) goes to the system browser.
+  // Any link that opens a new window (target=_blank) goes to the system browser,
+  // EXCEPT links spawned by the YouTube embed player itself (the pause "More videos"
+  // overlay, end-screen suggestions, share button). Those must never yank the user
+  // out of FocusTube to youtube.com — deny them silently so watching stays in-app.
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+    if (isYoutubePlayerPopup(url)) return { action: 'deny' };
     if (/^https?:/i.test(url)) shell.openExternal(url);
     return { action: 'deny' };
+  });
+
+  // The YouTube embed's pause "More videos" overlay and end-screen suggestion wall
+  // cannot be removed via player parameters (YouTube removed that in 2018). As an
+  // Electron host we can inject CSS directly into the embed frames to hide them,
+  // so nothing in the player ever suggests or links out to other videos.
+  mainWindow.webContents.on('did-frame-finish-load', (event, isMainFrame, frameProcessId, frameRoutingId) => {
+    injectYoutubeFrameCleanup(event.sender, frameProcessId, frameRoutingId);
   });
 
   mainWindow.on('closed', () => {

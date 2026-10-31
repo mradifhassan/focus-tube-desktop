@@ -8,7 +8,6 @@
  *   #/channel/SLUG/playlist/ID/video/N   -> playlist video (1-indexed)
  *   #/channel/SLUG/video/VIDEO_ID        -> channel video
  *   #/library                            -> library/playlists
- *   #/subscriptions                      -> subscriptions feed
  */
 
 export const routerMixin = {
@@ -49,7 +48,7 @@ export const routerMixin = {
     if (m) return { type: 'channel', channelKey: m[1] };
 
     if (h === '#/library') return { type: 'library' };
-    if (h === '#/subscriptions') return { type: 'subscriptions' };
+    if (h === '#/subscriptions' || h === '#/subs' || h === '#/sub') return { type: 'home' };
 
     m = h.match(/^#\/search(?:\/(.*))?$/);
     if (m) return { type: 'search', query: m[1] ? decodeURIComponent(m[1]) : '' };
@@ -87,9 +86,12 @@ export const routerMixin = {
     }
     if (route.type === 'subscriptions') {
       this.watchVideo = null;
-      this.activeView = 'subscriptions';
+      this.activeView = 'home';
       this.selectedChannelId = null;
       this.selectedPlaylist = null;
+      if (window.location.hash === '#/subscriptions') {
+        try { history.replaceState(null, '', '#/'); } catch {}
+      }
       return;
     }
     if (route.type === 'search') {
@@ -181,7 +183,7 @@ export const routerMixin = {
     }
 
     if (this.activeView === 'library') return '#/library';
-    if (this.activeView === 'subscriptions') return '#/subscriptions';
+    if (this.activeView === 'subscriptions') return '#/';
     if (this.activeView === 'search') {
       return this.searchQuery ? `#/search/${encodeURIComponent(this.searchQuery)}` : '#/search';
     }

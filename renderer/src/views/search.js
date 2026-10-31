@@ -37,7 +37,7 @@ export const searchViewMixin = {
           <h1 class="text-xl sm:text-2xl font-bold text-white">
             Search results for "<span class="text-[#3ea6ff]">${this.escapeHtml(this.searchQuery)}</span>"
           </h1>
-          <p class="text-sm text-[#aaa]">${totalResults} result${totalResults !== 1 ? 's' : ''} found across your subscriptions</p>
+          <p class="text-sm text-[#aaa]">${totalResults} result${totalResults !== 1 ? 's' : ''} found across your channels</p>
         </div>
 
         ${matchedPlaylists.length > 0 ? `

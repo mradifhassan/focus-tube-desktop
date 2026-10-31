@@ -3,6 +3,33 @@
 All notable changes to **FocusTube** are documented here. Adheres loosely to
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Semver until 1.0: 0.x.
 
+## [2.8.0] - 2026-11-01
+
+### Added
+
+- **Cross-platform in-app update banner.** The renderer's update checker now
+  runs on Android, Linux, macOS and Windows, querying the versioned releases
+  list (not the rolling `latest` release) and showing a "Download" banner when
+  a new version is available. Windows still gets the native electron-updater
+  install prompt; Linux/macOS open the Releases page.
+- **One Hour Classroom channel.** Curated *Physics 1st/2nd Paper Class 11/12*
+  playlists added to the catalog.
+
+### Changed
+
+- **Electron upgraded to ^45.1.0** and **electron-builder to ^26.18.0**.
+- **Removed "Add Channel" / unsubscribe.** Channels come only from the bundled
+  offline catalog, so there's nothing to add or lose.
+- **New app icon / favicon / logo** — the `thinking.png` artwork is now used
+  for the desktop icon, Android adaptive icons (background/foreground/only),
+  and the package icon.
+
+### Fixed
+
+- **"Check for Updates…" no longer hangs.** Linux/macOS now pick the highest
+  real `vX.Y.Z` release instead of `/releases/latest`, which the rolling
+  `latest` release was hijacking and breaking version comparison.
+
 ## [2.7.0] - 2026-10-13
 
 ### Added

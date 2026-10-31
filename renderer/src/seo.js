@@ -66,8 +66,7 @@ export const seoMixin = {
     }
 
     if (this.activeView === 'subscriptions') {
-      this.setDocumentMeta('Subscriptions - FocusTube', 'Feed of your subscribed educational channels on FocusTube, the distraction-free YouTube client.');
-      return;
+      this.activeView = 'home';
     }
 
     if (this.activeView === 'search') {
@@ -76,6 +75,6 @@ export const seoMixin = {
       return;
     }
 
-    this.setDocumentMeta(SITE_TITLE, 'FocusTube is a free, distraction-free YouTube client built for HSC students in Bangladesh. Browse curated educational videos from OnnoRokom Pathshala, Alchemy, and AloronXYZ — no ads, no recommendations, just focused learning.');
+    this.setDocumentMeta(SITE_TITLE, 'FocusTube is a free, distraction-free YouTube client built for HSC students in Bangladesh. Browse curated educational videos from OnnoRokom Pathshala, Alchemy, AloronXYZ, and One Hour Classroom — no ads, no recommendations, just focused learning.');
   },
 };

@@ -42,9 +42,6 @@ export const channelViewMixin = {
             <button class="bg-[#f1f1f1] hover:bg-white text-black font-semibold text-sm px-6 py-2.5 rounded-full shadow">
               Subscribed &#10003;
             </button>
-            <button data-del-ch="${channel.id}" class="p-2.5 rounded-full bg-[#272727] hover:bg-red-600 hover:text-white text-[#aaa] transition" title="Unsubscribe Channel">
-              ${ICONS.trash}
-            </button>
           </div>
         </div>
 

@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>FocusTube - Distraction-Free YouTube for HSC Learning</title>
-    <meta name="description" content="FocusTube is a free, distraction-free YouTube client built for HSC students in Bangladesh. Browse curated educational videos from OnnoRokom Pathshala, Alchemy, and AloronXYZ — no ads, no recommendations, just focused learning." />
-    <meta name="keywords" content="FocusTube, distraction-free YouTube, HSC Bangladesh, educational YouTube, YouTube client, no ads, study tool, OnnoRokom Pathshala, Alchemy, AloronXYZ, open source YouTube" />
-    <meta name="author" content="Radif Hassan" />
+    <meta name="description" content="FocusTube is a free, distraction-free YouTube client built for HSC students in Bangladesh. Browse curated educational videos from OnnoRokom Pathshala, Alchemy, AloronXYZ, and One Hour Classroom — no ads, no recommendations, just focused learning." />
+    <meta name="keywords" content="FocusTube, distraction-free YouTube, HSC Bangladesh, educational YouTube, YouTube client, no ads, study tool, OnnoRokom Pathshala, Alchemy, AloronXYZ, One Hour Classroom, open source YouTube" />
+    <meta name="author" content="Muhammad Radif Hassan" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="theme-color" content="#0f0f0f" />
     <meta name="rating" content="general" />
@@ -157,6 +157,8 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- Desktop shell injects window.__FOCUSTUBE_VERSION__ here; absent on web. -->
+    <script src="./__focustube_version.js" onerror="void 0"></script>
     <script type="module" src="./src/main.js"></script>
   </body>
 </html>
