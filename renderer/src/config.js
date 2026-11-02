@@ -18,7 +18,7 @@
 // v17 -> v18: added OnnoRokom "Application Oriented Chemistry" playlist (19 videos).
 // v18 -> v19: added OnnoRokom "Qualitative Chemistry" playlist (34 videos).
 // v19 -> v20: added OnnoRokom "Chemical Changes" (18) + "Quantitative Chemistry" (15) playlists.
-// v21 -> v22: added OnnoRokom ICT chapters — Number Systems & Digital Devices
-// (Parts 1 & 2, 44 videos), Database Management System (8 videos), Web Design
-// & HTML (8 videos), Communication System & Networking (16 videos).
-export const CATALOG_VERSION = 22;
+// v22 -> v23: added OnnoRokom Math chapters — Circle (Lectures 1 & 2, 15
+// videos), Straight Line (3.1–3.8, 43 videos), Matrix (8 videos),
+// Determinant (6 videos), Vector (17 videos) = 76 videos across 12 playlists.
+export const CATALOG_VERSION = 23;
