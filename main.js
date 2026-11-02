@@ -14,10 +14,10 @@ const { autoUpdater } = require('electron-updater');
 
 // On Ubuntu/Wayland, Electron's ozone platform (X11 vs Wayland) is initialized
 // BEFORE the main process JavaScript runs, so app.commandLine.appendSwitch()
-// for ozone-platform cannot change it here. The scripts/focustube-wrapper.sh
-# wrapper (installed by deb-after-install.sh) sets --ozone-platform=x11
-# --disable-gpu before Electron starts. We keep disableHardwareAcceleration
-// here as a JS-level safety net for any launch path that bypasses the wrapper.
+// for ozone-platform cannot change it here. The deb post-install script
+// installs a wrapper that sets --ozone-platform=x11 --disable-gpu before
+// Electron starts. We keep disableHardwareAcceleration here as a JS-level
+// safety net for any launch path that bypasses the wrapper.
 if (process.platform === 'linux') {
   app.disableHardwareAcceleration();
   app.commandLine.appendSwitch('disable-gpu');
