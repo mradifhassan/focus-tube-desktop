@@ -9070,6 +9070,690 @@ export const ONNOROKOM = {
       "channelName": "OnnoRokom Pathshala",
       "description": "Video Title: Quantitative Chemistry\nLecture: 15. Chromatography | ক্রোমাটোগ্রাফি\nSubject: Chemistry\nTopic: Quantitative Chemistry (পরিমাণগত রসায়ন)\nClass: HSC 1st Year\nLectured by: OnnoRokom Pathshala"
     },
+    {
+      "id": "6wKQsal1qi0",
+      "title": "01. General Discussion on Number Systems | সংখ্যা পদ্ধতির সাধারণ আলোচনা | OnnoRokom Pathshala",
+      "duration": "5:19",
+      "thumbnail": "https://i.ytimg.com/vi/6wKQsal1qi0/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & digital devices\nLecture: 01. General Discussion on Number Systems\nSubject: ICT\nTopic: Number Systems\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "Uo-Es-z5Egc",
+      "title": "02. Conversion of Numbers in Different Number Systems Part 01 | সংখ্যা পদ্ধতির রুপান্তর পর্ব ০১",
+      "duration": "13:23",
+      "thumbnail": "https://i.ytimg.com/vi/Uo-Es-z5Egc/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & digital devices\nLecture: 02. Conversion of Numbers in Different Number Systems Part 01\nSubject: ICT\nTopic: Number Systems\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "-SywbzN0qQU",
+      "title": "02. Conversion of Numbers in Different Number Systems Part 02 | সংখ্যা পদ্ধতির রুপান্তর পর্ব ০২",
+      "duration": "10:56",
+      "thumbnail": "https://i.ytimg.com/vi/-SywbzN0qQU/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & digital devices\nLecture: 02. Conversion of Numbers in Different Number Systems Part 02\nSubject: ICT\nTopic: Number Systems\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "GJzb-QsesRs",
+      "title": "02. Conversion of Numbers in Different Number Systems Part 03 | সংখ্যা পদ্ধতির রুপান্তর পর্ব ০৩",
+      "duration": "15:11",
+      "thumbnail": "https://i.ytimg.com/vi/GJzb-QsesRs/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & digital devices\nLecture: 02. Conversion of Numbers in Different Number Systems Part 03\nSubject: ICT\nTopic: Number Systems\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "fjGka2YzdUQ",
+      "title": "02. Conversion of Numbers in Different Number Systems Part 04 | সংখ্যা পদ্ধতির রুপান্তর পর্ব ০৪",
+      "duration": "9:07",
+      "thumbnail": "https://i.ytimg.com/vi/fjGka2YzdUQ/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & digital devices\nLecture: 02. Conversion of Numbers in Different Number Systems Part 04\nSubject: ICT\nTopic: Number Systems\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "XeMCH5v1PRY",
+      "title": "02. Conversion of Numbers in Different Number Systems Part 05 | সংখ্যা পদ্ধতির রুপান্তর পর্ব ০৫",
+      "duration": "13:18",
+      "thumbnail": "https://i.ytimg.com/vi/XeMCH5v1PRY/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & digital devices\nLecture: 02. Conversion of Numbers in Different Number Systems Part 05\nSubject: ICT\nTopic: Number Systems\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "xu2EWLTyMLg",
+      "title": "03. Addition in Different Number Systems Part 01 | বিভিন্ন সংখ্যা পদ্ধতির যোগ পর্ব ০১",
+      "duration": "11:19",
+      "thumbnail": "https://i.ytimg.com/vi/xu2EWLTyMLg/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & digital devices\nLecture: 03. Addition in Different Number Systems Part 01\nSubject: ICT\nTopic: Number Systems\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "R3nJBe39dmY",
+      "title": "03. Addition in Different Number Systems Part 02 | বিভিন্ন সংখ্যা পদ্ধতির যোগ পর্ব ০২",
+      "duration": "10:37",
+      "thumbnail": "https://i.ytimg.com/vi/R3nJBe39dmY/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & digital devices\nLecture: 03. Addition in Different Number Systems Part 02\nSubject: ICT\nTopic: Number Systems\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "gST66M02u60",
+      "title": "04. Binary Subtraction, Multiply, divide | বাইনারি বিয়োগ, গুন ,ভাগ | OnnoRokom Pathshala",
+      "duration": "13:02",
+      "thumbnail": "https://i.ytimg.com/vi/gST66M02u60/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & digital devices\nLecture: 04. Binary Subtraction, Multiply, divide\nSubject: ICT\nTopic: Number Systems\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "4bVgq_TTRZw",
+      "title": "05. Signed Numbers Part 01 | চিহ্নযুক্ত সংখ্যা পর্ব ০১ | OnnoRokom Pathshala",
+      "duration": "10:35",
+      "thumbnail": "https://i.ytimg.com/vi/4bVgq_TTRZw/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & digital devices\nLecture: 05. Signed Numbers Part 01\nSubject: ICT\nTopic: Number Systems\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "Ud7mK2MenEM",
+      "title": "05. Signed Numbers Part 02 | চিহ্নযুক্ত সংখ্যা পর্ব ০২ | OnnoRokom Pathshala",
+      "duration": "13:53",
+      "thumbnail": "https://i.ytimg.com/vi/Ud7mK2MenEM/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & digital devices\nLecture: 05. Signed Numbers Part 02\nSubject: ICT\nTopic: Number Systems\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "ljJ1LSBIEEM",
+      "title": "05. Signed Numbers Part 03 | চিহ্নযুক্ত সংখ্যা পর্ব ০৩ | OnnoRokom Pathshala",
+      "duration": "18:02",
+      "thumbnail": "https://i.ytimg.com/vi/ljJ1LSBIEEM/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & digital devices\nLecture: 05. Signed Numbers Part 03\nSubject: ICT\nTopic: Number Systems\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "xiV4E0hVOlM",
+      "title": "06. Storage Capacities of Registers Part 01 | রেজিস্টার এর স্টোরেজ ক্যাপাসিটি পর্ব ০১",
+      "duration": "11:13",
+      "thumbnail": "https://i.ytimg.com/vi/xiV4E0hVOlM/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & digital devices\nLecture: 06. Storage Capacities of Registers Part 01\nSubject: ICT\nTopic: Number Systems\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "Ke7NUEB5kAQ",
+      "title": "06. Storage Capacities of Registers Part 02 | রেজিস্টার এর স্টোরেজ ক্যাপাসিটি পর্ব ০২",
+      "duration": "10:13",
+      "thumbnail": "https://i.ytimg.com/vi/Ke7NUEB5kAQ/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & digital devices\nLecture: 06. Storage Capacities of Registers Part 02\nSubject: ICT\nTopic: Number Systems\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "a3JWjOu-9Og",
+      "title": "07. Addition & Subtraction in 2’s Complement Scheme | 2's Complement পদ্ধতিতে যোগ বিয়োগ",
+      "duration": "18:20",
+      "thumbnail": "https://i.ytimg.com/vi/a3JWjOu-9Og/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & digital devices\nLecture: 07. Addition & Subtraction in 2's Complement Scheme\nSubject: ICT\nTopic: Number Systems\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "KO-MdBMbueM",
+      "title": "08. Addition & Subtraction in 1’s Complement Scheme | 1's Complement পদ্ধতিতে যোগ বিয়োগ",
+      "duration": "6:39",
+      "thumbnail": "https://i.ytimg.com/vi/KO-MdBMbueM/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & digital devices\nLecture: 08. Addition & Subtraction in 1's Complement Scheme\nSubject: ICT\nTopic: Number Systems\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "_usiT8k7h7Q",
+      "title": "09. Concept of Coding Part 01 | কোডের ধারণা পর্ব ০১ | OnnoRokom Pathshala",
+      "duration": "16:24",
+      "thumbnail": "https://i.ytimg.com/vi/_usiT8k7h7Q/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & digital devices\nLecture: 09. Concept of Coding Part 01\nSubject: ICT\nTopic: Number Systems\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "IrUAool9fIs",
+      "title": "09. Concept of Coding Part 02 | কোডের ধারণা পর্ব ০২ | OnnoRokom Pathshala",
+      "duration": "16:52",
+      "thumbnail": "https://i.ytimg.com/vi/IrUAool9fIs/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & digital devices\nLecture: 09. Concept of Coding Part 02\nSubject: ICT\nTopic: Number Systems\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "rJlgap818k4",
+      "title": "01. Digital Device | ডিজিটাল ডিভাইস | OnnoRokom Pathshala",
+      "duration": "17:29",
+      "thumbnail": "https://i.ytimg.com/vi/rJlgap818k4/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 01. Digital Device\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "-IDsRBRDw48",
+      "title": "02. Boolean Theorem Part 01 | বুলিয়ান উপপাদ্য পর্ব ০১ | OnnoRokom Pathshala",
+      "duration": "15:37",
+      "thumbnail": "https://i.ytimg.com/vi/-IDsRBRDw48/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 02. Boolean Theorem Part 01\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "5b1-SOKa9FI",
+      "title": "02. Boolean Theorem Part 02 | বুলিয়ান উপপাদ্য পর্ব ০২ | OnnoRokom Pathshala",
+      "duration": "9:29",
+      "thumbnail": "https://i.ytimg.com/vi/5b1-SOKa9FI/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 02. Boolean Theorem Part 02\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "8bl5aNnDnrA",
+      "title": "03. Truth Table | সত্যক সারণি | OnnoRokom Pathshala",
+      "duration": "9:38",
+      "thumbnail": "https://i.ytimg.com/vi/8bl5aNnDnrA/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 03. Truth Table\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "d0QlfK_XF48",
+      "title": "04. Logic Gate Part 01 | লজিক গেইট পর্ব ০১ | OnnoRokom Pathshala",
+      "duration": "16:32",
+      "thumbnail": "https://i.ytimg.com/vi/d0QlfK_XF48/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 04. Logic Gate Part 01\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "Bulvem_dVys",
+      "title": "04. Logic Gate Part 02 | লজিক গেইট পর্ব ০২ | OnnoRokom Pathshala",
+      "duration": "15:58",
+      "thumbnail": "https://i.ytimg.com/vi/Bulvem_dVys/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 04. Logic Gate Part 02\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "3msXmNoLmmI",
+      "title": "04. Logic Gate Part 03 | লজিক গেইট পর্ব ০৩ | OnnoRokom Pathshala",
+      "duration": "15:35",
+      "thumbnail": "https://i.ytimg.com/vi/3msXmNoLmmI/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 04. Logic Gate Part 03\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "d3lAQyEiRUQ",
+      "title": "05. Universal Gate | সার্বজনীন গেইট | OnnoRokom Pathshala",
+      "duration": "15:02",
+      "thumbnail": "https://i.ytimg.com/vi/d3lAQyEiRUQ/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 05. Universal Gate\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "Ci8aTt9BhWY",
+      "title": "06. Implement X-OR and X-NOR gates by Basic Gate | মৌলিক গেইটের সাহায্যে X ORও X NOR গেইট বাস্তবায়ন",
+      "duration": "11:04",
+      "thumbnail": "https://i.ytimg.com/vi/Ci8aTt9BhWY/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 06. Implement X-OR and X-NOR gates by Basic Gate\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "pzd5NeeTWBA",
+      "title": "07. Simplification of Logic Function | লজিক ফাংশনের সরলিকরণ | OnnoRokom Pathshala",
+      "duration": "10:03",
+      "thumbnail": "https://i.ytimg.com/vi/pzd5NeeTWBA/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 07. Simplification of Logic Function\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "rHLY92Y4XXg",
+      "title": "08. Karnaugh map Part 01 | কারন্যু ম্যাপ পর্ব ০১ | OnnoRokom Pathshala",
+      "duration": "14:32",
+      "thumbnail": "https://i.ytimg.com/vi/rHLY92Y4XXg/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 08. Karnaugh map Part 01\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "KU1c2_glnwQ",
+      "title": "08. Karnaugh map Part 02 | কারন্যু ম্যাপ পর্ব ০২ | OnnoRokom Pathshala",
+      "duration": "8:18",
+      "thumbnail": "https://i.ytimg.com/vi/KU1c2_glnwQ/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 08. Karnaugh map Part 02\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "dnG83FciCIw",
+      "title": "09. Draw of Logical Function into Logical Circuit | লজিক ফাংশন থেকে লজিক সার্কিট অংকন",
+      "duration": "7:34",
+      "thumbnail": "https://i.ytimg.com/vi/dnG83FciCIw/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 09. Draw of Logical Function into Logical Circuit\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "W67RaQdz0nA",
+      "title": "10. Encoder | এনকোডার | OnnoRokom Pathshala",
+      "duration": "16:58",
+      "thumbnail": "https://i.ytimg.com/vi/W67RaQdz0nA/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 10. Encoder\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "Iy_mA0Pwvl0",
+      "title": "11. Decoder | ডিকোডার | OnnoRokom Pathshala",
+      "duration": "11:02",
+      "thumbnail": "https://i.ytimg.com/vi/Iy_mA0Pwvl0/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 11. Decoder\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "PaNceyevvf4",
+      "title": "12. Adder Part 01 | অ্যাডার পর্ব ০১ | OnnoRokom Pathshala",
+      "duration": "13:20",
+      "thumbnail": "https://i.ytimg.com/vi/PaNceyevvf4/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 12. Adder Part 01\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "5a3XfNbS5Js",
+      "title": "12. Adder Part 02 | অ্যাডার পর্ব ০২ | OnnoRokom Pathshala",
+      "duration": "9:21",
+      "thumbnail": "https://i.ytimg.com/vi/5a3XfNbS5Js/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 12. Adder Part 02\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "Vj3GiVjr3ZY",
+      "title": "13. Sequential Logic | সিকুয়েনসিয়াল লজিক | OnnoRokom Pathshala",
+      "duration": "4:53",
+      "thumbnail": "https://i.ytimg.com/vi/Vj3GiVjr3ZY/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 13. Sequential Logic\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "ZNxnlvdiC-A",
+      "title": "14. Flip-Flop Part 01 | ফ্লিপ ফ্লপ পর্ব ০১ | OnnoRokom Pathshala",
+      "duration": "22:41",
+      "thumbnail": "https://i.ytimg.com/vi/ZNxnlvdiC-A/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 14. Flip-Flop Part 01\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "WVoOJUlR87Y",
+      "title": "14. Flip-Flop Part 02 | ফ্লিপ ফ্লপ পর্ব ০২ | OnnoRokom Pathshala",
+      "duration": "6:58",
+      "thumbnail": "https://i.ytimg.com/vi/WVoOJUlR87Y/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 14. Flip-Flop Part 02\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "dDC-bKhiP8Y",
+      "title": "15. Counter Part 01 | কাউন্টার পর্ব ০১ | OnnoRokom Pathshala",
+      "duration": "15:43",
+      "thumbnail": "https://i.ytimg.com/vi/dDC-bKhiP8Y/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 15. Counter Part 01\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "QT1grT7pDSQ",
+      "title": "15. Counter Part 02 | কাউন্টার পর্ব ০২ | OnnoRokom Pathshala",
+      "duration": "8:04",
+      "thumbnail": "https://i.ytimg.com/vi/QT1grT7pDSQ/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 15. Counter Part 02\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "abK92FbjDpQ",
+      "title": "15. Counter Part 03 | কাউন্টার পর্ব ০৩ | OnnoRokom Pathshala",
+      "duration": "9:24",
+      "thumbnail": "https://i.ytimg.com/vi/abK92FbjDpQ/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 15. Counter Part 03\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "fECqK99Ez4E",
+      "title": "15. Counter Part 04 | কাউন্টার পর্ব ০৪ | OnnoRokom Pathshala",
+      "duration": "12:39",
+      "thumbnail": "https://i.ytimg.com/vi/fECqK99Ez4E/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 15. Counter Part 04\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "NGdWmUAODCs",
+      "title": "15. Counter Part 05 | কাউন্টার পর্ব ০৫ | OnnoRokom Pathshala",
+      "duration": "9:27",
+      "thumbnail": "https://i.ytimg.com/vi/NGdWmUAODCs/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 15. Counter Part 05\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "GQ6z0A2uf4c",
+      "title": "16. Register | রেজিস্টর | OnnoRokom Pathshala",
+      "duration": "9:58",
+      "thumbnail": "https://i.ytimg.com/vi/GQ6z0A2uf4c/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: ICT_Number Systems & Digital Devices\nLecture: 16. Register\nSubject: ICT\nTopic: Digital Devices\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "-B1rC57pKvM",
+      "title": "01. ডেটাবেজ ম্যানেজমেন্ট সিস্টেম এর সাধারণ আলোচনা – টেবিল, ফিল্ড এবং রেকর্ড | OnnoRokom Pathshala",
+      "duration": "5:45",
+      "thumbnail": "https://i.ytimg.com/vi/-B1rC57pKvM/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Database Management System\nLecture: 01. ডেটাবেজ ম্যানেজমেন্ট সিস্টেম এর সাধারণ আলোচনা\nSubject: ICT\nTopic: DBMS\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "8V4j3hKzqNc",
+      "title": "02. Key | চাবি | OnnoRokom Pathshala",
+      "duration": "7:56",
+      "thumbnail": "https://i.ytimg.com/vi/8V4j3hKzqNc/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Database Management System\nLecture: 02. Key\nSubject: ICT\nTopic: DBMS\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "pY0V8RysqPY",
+      "title": "03. Sorting & Indexing | সর্টিং এবং ইন্ডেক্সিং | OnnoRokom Pathshala",
+      "duration": "9:12",
+      "thumbnail": "https://i.ytimg.com/vi/pY0V8RysqPY/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Database Management System\nLecture: 03. Sorting & Indexing\nSubject: ICT\nTopic: DBMS\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "aGm-RITT6zg",
+      "title": "04. ER Diagram | ER ডায়াগ্রাম | OnnoRokom Pathshala",
+      "duration": "9:21",
+      "thumbnail": "https://i.ytimg.com/vi/aGm-RITT6zg/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Database Management System\nLecture: 04. ER Diagram\nSubject: ICT\nTopic: DBMS\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "AQ7ZQm3G3Bs",
+      "title": "05. রিলেশনশিপের ডিগ্রি এবং রিলেশনশিপের প্রকারভেদ | OnnoRokom Pathshala",
+      "duration": "15:34",
+      "thumbnail": "https://i.ytimg.com/vi/AQ7ZQm3G3Bs/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Database Management System\nLecture: 05. Relationship Degree and Types\nSubject: ICT\nTopic: DBMS\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "TsyJdP8mTZ0",
+      "title": "06. Data Security | তথ্যের নিরাপত্তা | OnnoRokom Pathshala",
+      "duration": "11:08",
+      "thumbnail": "https://i.ytimg.com/vi/TsyJdP8mTZ0/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Database Management System\nLecture: 06. Data Security\nSubject: ICT\nTopic: DBMS\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "Vx01rkXwvac",
+      "title": "07. Relational Algebra | OnnoRokom Pathshala",
+      "duration": "17:58",
+      "thumbnail": "https://i.ytimg.com/vi/Vx01rkXwvac/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Database Management System\nLecture: 07. Relational Algebra\nSubject: ICT\nTopic: DBMS\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "-uisfR8qkzg",
+      "title": "08. SQL | OnnoRokom Pathshala",
+      "duration": "11:28",
+      "thumbnail": "https://i.ytimg.com/vi/-uisfR8qkzg/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Database Management System\nLecture: 08. SQL\nSubject: ICT\nTopic: DBMS\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "pDE38rlnmpM",
+      "title": "01. Basic Website Concept | বেসিক ওয়েবসাইটের ধারণা | OnnoRokom Pathshala",
+      "duration": "7:01",
+      "thumbnail": "https://i.ytimg.com/vi/pDE38rlnmpM/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Web Design and HTML\nLecture: 01. Basic Website Concept\nSubject: ICT\nTopic: Web Design\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "-2I2R9ELDXA",
+      "title": "02. IP Address, Domain Name | আইপি এড্রেস, ডোমেইন নেম | OnnoRokom Pathshala",
+      "duration": "10:56",
+      "thumbnail": "https://i.ytimg.com/vi/-2I2R9ELDXA/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Web Design and HTML\nLecture: 02. IP Address, Domain Name\nSubject: ICT\nTopic: Web Design\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "kBmSWwv0EQY",
+      "title": "03. Web Browser, Static and Dynamic Website | ওয়েব ব্রাউজার, স্ট্যাটিক ও ডাইনামিক ওয়েব সাইট | OnnoRokom Pathshala",
+      "duration": "7:02",
+      "thumbnail": "https://i.ytimg.com/vi/kBmSWwv0EQY/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Web Design and HTML\nLecture: 03. Web Browser, Static and Dynamic Website\nSubject: ICT\nTopic: Web Design\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "0WrUyUX8lfo",
+      "title": "04. Website Structure | ওয়েবসাইটের কাঠামো | OnnoRokom Pathshala",
+      "duration": "4:34",
+      "thumbnail": "https://i.ytimg.com/vi/0WrUyUX8lfo/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Web Design and HTML\nLecture: 04. Website Structure\nSubject: ICT\nTopic: Web Design\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "BSIlgcbO_20",
+      "title": "05. Basic HTML | বেসিক এইচ.টি.এম.এল. | OnnoRokom Pathshala",
+      "duration": "7:55",
+      "thumbnail": "https://i.ytimg.com/vi/BSIlgcbO_20/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Web Design and HTML\nLecture: 05. Basic HTML\nSubject: ICT\nTopic: Web Design\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "tR4wRb0ZAkE",
+      "title": "06. Basic HTML Practically | হাতে কলমে এইচ.টি.এম.এল. | OnnoRokom Pathshala",
+      "duration": "11:15",
+      "thumbnail": "https://i.ytimg.com/vi/tR4wRb0ZAkE/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Web Design and HTML\nLecture: 06. Basic HTML Practically\nSubject: ICT\nTopic: Web Design\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "EmY7wp-lo9c",
+      "title": "07. Attribute, Image Attach | অ্যাট্রিবিউট, ছবি সংযোজন | OnnoRokom Pathshala",
+      "duration": "8:04",
+      "thumbnail": "https://i.ytimg.com/vi/EmY7wp-lo9c/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Web Design and HTML\nLecture: 07. Attribute, Image Attach\nSubject: ICT\nTopic: Web Design\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "AzTkRlVv5d4",
+      "title": "08. Color & Design | রং এবং ডিজাইন | OnnoRokom Pathshala",
+      "duration": "3:49",
+      "thumbnail": "https://i.ytimg.com/vi/AzTkRlVv5d4/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Web Design and HTML\nLecture: 08. Color & Design\nSubject: ICT\nTopic: Web Design\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "Jn0pk-t4OyM",
+      "title": "01. What is Communication System? (Concept, Element, Bandwidth)",
+      "duration": "8:59",
+      "thumbnail": "https://i.ytimg.com/vi/Jn0pk-t4OyM/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Communication System and Networking\nLecture: 01. What is Communication System?\nSubject: ICT\nTopic: Communication\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "0dEXdf0cOKw",
+      "title": "02. Data Transmission Method (Serial, Parallel, Efficiency) - Part 01",
+      "duration": "16:00",
+      "thumbnail": "https://i.ytimg.com/vi/0dEXdf0cOKw/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Communication System and Networking\nLecture: 02. Data Transmission Method Part 01\nSubject: ICT\nTopic: Networking\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "YrvA4hkJqPE",
+      "title": "02. Data Transmission Method (Serial, Parallel, Efficiency) - Part 02",
+      "duration": "15:54",
+      "thumbnail": "https://i.ytimg.com/vi/YrvA4hkJqPE/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Communication System and Networking\nLecture: 02. Data Transmission Method Part 02\nSubject: ICT\nTopic: Networking\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "UbJz2elh2-c",
+      "title": "03. Data Transmission Mode (Simplex, Duplex, Multicast, Broadcast)",
+      "duration": "7:51",
+      "thumbnail": "https://i.ytimg.com/vi/UbJz2elh2-c/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Communication System and Networking\nLecture: 03. Data Transmission Mode\nSubject: ICT\nTopic: Networking\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "iuLws5IkRFE",
+      "title": "04. Data Communication Medium (Wire) | OnnoRokom Pathshala",
+      "duration": "17:14",
+      "thumbnail": "https://i.ytimg.com/vi/iuLws5IkRFE/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Communication System and Networking\nLecture: 04. Data Communication Medium (Wire)\nSubject: ICT\nTopic: Networking\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "RzdzUvk-t-U",
+      "title": "05. Difference between Multiple Cable (Co-excel, Twisted Pair, Optical Fiber)",
+      "duration": "4:14",
+      "thumbnail": "https://i.ytimg.com/vi/RzdzUvk-t-U/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Communication System and Networking\nLecture: 05. Difference between Multiple Cable\nSubject: ICT\nTopic: Networking\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "V-Wl2XzLsDY",
+      "title": "06. Data Communication Medium (Wireless) - Part 01 | OnnoRokom Pathshala",
+      "duration": "12:45",
+      "thumbnail": "https://i.ytimg.com/vi/V-Wl2XzLsDY/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Communication System and Networking\nLecture: 06. Data Communication Medium (Wireless) Part 01\nSubject: ICT\nTopic: Networking\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "ztw0atpooLc",
+      "title": "06. Data Communication Medium (Wireless) - Part 02 | OnnoRokom Pathshala",
+      "duration": "9:50",
+      "thumbnail": "https://i.ytimg.com/vi/ztw0atpooLc/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Communication System and Networking\nLecture: 06. Data Communication Medium (Wireless) Part 02\nSubject: ICT\nTopic: Networking\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "w9ikLRTj_2g",
+      "title": "06. Data Communication Medium (Wireless) - Part 03 | OnnoRokom Pathshala",
+      "duration": "13:01",
+      "thumbnail": "https://i.ytimg.com/vi/w9ikLRTj_2g/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Communication System and Networking\nLecture: 06. Data Communication Medium (Wireless) Part 03\nSubject: ICT\nTopic: Networking\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "wRJ4JUEyw7k",
+      "title": "06. Data Communication Medium (Wireless) - Part 04 | OnnoRokom Pathshala",
+      "duration": "9:03",
+      "thumbnail": "https://i.ytimg.com/vi/wRJ4JUEyw7k/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Communication System and Networking\nLecture: 06. Data Communication Medium (Wireless) Part 04\nSubject: ICT\nTopic: Networking\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "ko53M12RKiA",
+      "title": "06. Data Communication Medium (Wireless) - Part 05 | OnnoRokom Pathshala",
+      "duration": "10:36",
+      "thumbnail": "https://i.ytimg.com/vi/ko53M12RKiA/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Communication System and Networking\nLecture: 06. Data Communication Medium (Wireless) Part 05\nSubject: ICT\nTopic: Networking\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "2QPB9oZ4wWw",
+      "title": "07. Mobile Communication - Part 01 | OnnoRokom Pathshala",
+      "duration": "14:36",
+      "thumbnail": "https://i.ytimg.com/vi/2QPB9oZ4wWw/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Communication System and Networking\nLecture: 07. Mobile Communication Part 01\nSubject: ICT\nTopic: Networking\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "azQhLWnDzmM",
+      "title": "07. Mobile Communication - Part 02 | OnnoRokom Pathshala",
+      "duration": "10:57",
+      "thumbnail": "https://i.ytimg.com/vi/azQhLWnDzmM/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Communication System and Networking\nLecture: 07. Mobile Communication Part 02\nSubject: ICT\nTopic: Networking\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "SbkNvlYlphI",
+      "title": "08. Networking - Part 01 | OnnoRokom Pathshala",
+      "duration": "12:10",
+      "thumbnail": "https://i.ytimg.com/vi/SbkNvlYlphI/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Communication System and Networking\nLecture: 08. Networking Part 01\nSubject: ICT\nTopic: Networking\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "phS-SwTFM7A",
+      "title": "08. Networking - Part 02 | OnnoRokom Pathshala",
+      "duration": "16:11",
+      "thumbnail": "https://i.ytimg.com/vi/phS-SwTFM7A/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Communication System and Networking\nLecture: 08. Networking Part 02\nSubject: ICT\nTopic: Networking\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
+    {
+      "id": "NLfFOLO7ZYs",
+      "title": "09. Cloud Computing | OnnoRokom Pathshala",
+      "duration": "10:31",
+      "thumbnail": "https://i.ytimg.com/vi/NLfFOLO7ZYs/hqdefault.jpg",
+      "channelId": "UCBA6OI6vEDK13jfoiuX694A",
+      "channelName": "OnnoRokom Pathshala",
+      "description": "Video Title: Communication System and Networking\nLecture: 09. Cloud Computing\nSubject: ICT\nTopic: Networking\nClass: HSC\nLectured by: OnnoRokom Pathshala"
+    },
   ],
   playlists:   [{
       "id": "Physics_Vectors_02",
@@ -10646,6 +11330,132 @@ export const ONNOROKOM = {
         "KE-jC8gxtDI",
         "ShcNwiIqaUw",
         "v-c1OGpwKZ4",
+      ]
+    },
+    
+{
+      "id": "ICT_NumberSystems_Part1",
+      "title": "ICT Number Systems & Digital Devices (Part 1)",
+      "videoCount": 18,
+      "thumbnail": "https://i.ytimg.com/vi/6wKQsal1qi0/hqdefault.jpg",
+      "updatedText": "Updated 1 week ago",
+      "videos": [
+        "6wKQsal1qi0",
+        "Uo-Es-z5Egc",
+        "-SywbzN0qQU",
+        "GJzb-QsesRs",
+        "fjGka2YzdUQ",
+        "XeMCH5v1PRY",
+        "xu2EWLTyMLg",
+        "R3nJBe39dmY",
+        "gST66M02u60",
+        "4bVgq_TTRZw",
+        "Ud7mK2MenEM",
+        "ljJ1LSBIEEM",
+        "xiV4E0hVOlM",
+        "Ke7NUEB5kAQ",
+        "a3JWjOu-9Og",
+        "KO-MdBMbueM",
+        "_usiT8k7h7Q",
+        "IrUAool9fIs"
+      ]
+    },
+    
+{
+      "id": "ICT_NumberSystems_Part2",
+      "title": "ICT Number Systems & Digital Devices (Part 2)",
+      "videoCount": 26,
+      "thumbnail": "https://i.ytimg.com/vi/rJlgap818k4/hqdefault.jpg",
+      "updatedText": "Updated 1 week ago",
+      "videos": [
+        "rJlgap818k4",
+        "-IDsRBRDw48",
+        "5b1-SOKa9FI",
+        "8bl5aNnDnrA",
+        "d0QlfK_XF48",
+        "Bulvem_dVys",
+        "3msXmNoLmmI",
+        "d3lAQyEiRUQ",
+        "Ci8aTt9BhWY",
+        "pzd5NeeTWBA",
+        "rHLY92Y4XXg",
+        "KU1c2_glnwQ",
+        "dnG83FciCIw",
+        "W67RaQdz0nA",
+        "Iy_mA0Pwvl0",
+        "PaNceyevvf4",
+        "5a3XfNbS5Js",
+        "Vj3GiVjr3ZY",
+        "ZNxnlvdiC-A",
+        "WVoOJUlR87Y",
+        "dDC-bKhiP8Y",
+        "QT1grT7pDSQ",
+        "abK92FbjDpQ",
+        "fECqK99Ez4E",
+        "NGdWmUAODCs",
+        "GQ6z0A2uf4c"
+      ]
+    },
+    
+{
+      "id": "ICT_DBMS",
+      "title": "ICT Database Management System",
+      "videoCount": 8,
+      "thumbnail": "https://i.ytimg.com/vi/-B1rC57pKvM/hqdefault.jpg",
+      "updatedText": "Updated 1 week ago",
+      "videos": [
+        "-B1rC57pKvM",
+        "8V4j3hKzqNc",
+        "pY0V8RysqPY",
+        "aGm-RITT6zg",
+        "AQ7ZQm3G3Bs",
+        "TsyJdP8mTZ0",
+        "Vx01rkXwvac",
+        "-uisfR8qkzg"
+      ]
+    },
+    
+{
+      "id": "ICT_WebDesign_HTML",
+      "title": "ICT Web Design and HTML",
+      "videoCount": 8,
+      "thumbnail": "https://i.ytimg.com/vi/pDE38rlnmpM/hqdefault.jpg",
+      "updatedText": "Updated 1 week ago",
+      "videos": [
+        "pDE38rlnmpM",
+        "-2I2R9ELDXA",
+        "kBmSWwv0EQY",
+        "0WrUyUX8lfo",
+        "BSIlgcbO_20",
+        "tR4wRb0ZAkE",
+        "EmY7wp-lo9c",
+        "AzTkRlVv5d4"
+      ]
+    },
+    
+{
+      "id": "ICT_Communication_Networking",
+      "title": "ICT Communication System and Networking",
+      "videoCount": 16,
+      "thumbnail": "https://i.ytimg.com/vi/Jn0pk-t4OyM/hqdefault.jpg",
+      "updatedText": "Updated 1 week ago",
+      "videos": [
+        "Jn0pk-t4OyM",
+        "0dEXdf0cOKw",
+        "YrvA4hkJqPE",
+        "UbJz2elh2-c",
+        "iuLws5IkRFE",
+        "RzdzUvk-t-U",
+        "V-Wl2XzLsDY",
+        "ztw0atpooLc",
+        "w9ikLRTj_2g",
+        "wRJ4JUEyw7k",
+        "ko53M12RKiA",
+        "2QPB9oZ4wWw",
+        "azQhLWnDzmM",
+        "SbkNvlYlphI",
+        "phS-SwTFM7A",
+        "NLfFOLO7ZYs"
       ]
     },
     

@@ -3,6 +3,27 @@
 All notable changes to **FocusTube** are documented here. Adheres loosely to
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Semver until 1.0: 0.x.
 
+## [2.8.2] - 2026-11-02
+
+### Added
+
+- **New ICT chapters from OnnoRokom Pathshala.** Added 76 new videos and 5 new
+  playlists covering the HSC ICT curriculum:
+  - **Number Systems & Digital Devices (Part 1)** — 18 videos: number systems,
+    conversions, addition, signed numbers, storage capacities, complement
+    arithmetic, concept of coding.
+  - **Number Systems & Digital Devices (Part 2)** — 26 videos: digital devices,
+    boolean theorems, truth tables, logic gates, universal gates, X-OR/X-NOR,
+    simplification, Karnaugh maps, encoders, decoders, adders, sequential logic,
+    flip-flops, counters, registers.
+  - **Database Management System** — 8 videos: DBMS intro, keys, sorting &
+    indexing, ER diagrams, relationships, data security, relational algebra, SQL.
+  - **Web Design and HTML** — 8 videos: website concepts, IP/domain, browsers,
+    site structure, basic HTML, attributes, colors, tables.
+  - **Communication System and Networking** — 16 videos: communication systems,
+    data transmission, modes, media (wired/wireless), mobile communication,
+    networking, cloud computing.
+
 ## [2.8.1] - 2026-11-02
 
 ### Fixed
