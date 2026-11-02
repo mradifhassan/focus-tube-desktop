@@ -381,7 +381,7 @@ class FreeTubeApp {
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
             </button>
             <div id="nav-logo-btn" class="flex items-center gap-2 cursor-pointer shrink-0">
-              <img src="../assets/thinking.png" alt="FocusTube" class="w-7 h-7 rounded-[6px] shadow" />
+              <img src="favicon.png" alt="FocusTube" class="w-7 h-7 rounded-[6px] shadow" />
               <span class="hidden sm:inline font-bold text-lg tracking-tight text-white font-sans">FocusTube</span>
             </div>
           </div>
