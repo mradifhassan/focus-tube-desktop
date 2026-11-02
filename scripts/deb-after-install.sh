@@ -17,7 +17,7 @@ fi
 
 cat > "$WRAPPER" << 'WRAPPER_EOF'
 #!/bin/sh
-exec "$(dirname "$0")/focustube-bin" --ozone-platform=x11 --disable-gpu "$@"
+exec /opt/FocusTube/focustube-bin --ozone-platform=x11 --disable-gpu "$@"
 WRAPPER_EOF
 chmod 755 "$WRAPPER" 2>/dev/null || true
 
