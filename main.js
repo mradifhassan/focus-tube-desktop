@@ -374,7 +374,11 @@ function createWindow(port) {
     minHeight: 620,
     backgroundColor: '#0f0f0f',
     title: 'FocusTube',
-    icon: path.join(__dirname, 'build', 'icon.png'),
+    icon: (() => {
+      const devIcon = path.join(__dirname, 'build', 'icon.png');
+      const pkgIcon = path.join(process.resourcesPath, 'app', 'favicon.png');
+      return require('fs').existsSync(devIcon) ? devIcon : pkgIcon;
+    })(),
     autoHideMenuBar: false,
     webPreferences: {
       contextIsolation: true,
