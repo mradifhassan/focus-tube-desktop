@@ -12,46 +12,15 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { autoUpdater } = require('electron-updater');
 
-// The GPU/compositor process crashes under Chromium's native Wayland backend on
-// some setups shortly after launch ("GPU process isn't usable. Goodbye"), taking
-// the whole app with it. XWayland exposes a working X11/EGL path even when
-// native Wayland GPU fails, so route Linux/Wayland sessions through it. That
-// keeps hardware acceleration on machines where the Wayland GPU backend is
-// broken. If XWayland routing still causes the GPU process to segfault (as seen
-// on some Ubuntu/Wayland setups), fall back to software rendering entirely so
-// the app at least launches.
-if (process.platform === 'linux' && process.env.XDG_SESSION_TYPE === 'wayland') {
-  app.disableHardwareAcceleration();
-  // Try XWayland first (ozone-platform=x11). If that fails to create a window
-  // under this Wayland setup (XGetWindowAttributes error), fall back to
-  // native Wayland (ozone-platform=wayland).
-  app.commandLine.appendSwitch('ozone-platform', 'x11');
-  app.commandLine.appendSwitch('disable-features', 'UseOzonePlatform');
-}
-
-// On Ubuntu 24.04+ AppArmor restricts unprivileged user namespaces, so
-// Chromium needs the setuid chrome-sandbox helper. The deb/rpm postinst sets
-// it to 4755; if it's missing or not setuid (e.g. postinst didn't run, or a
-// tarball/portable launch), fall back to --no-sandbox so the app still
-// launches instead of aborting with a SUID sandbox fatal. Hardware
-// acceleration is also disabled in that path to avoid GPU-process crashes on
-// Wayland/X11.
+// On Ubuntu/Wayland, Electron's ozone platform (X11 vs Wayland) is initialized
+// BEFORE the main process JavaScript runs, so app.commandLine.appendSwitch()
+// for ozone-platform cannot change it here. The scripts/focustube-wrapper.sh
+# wrapper (installed by deb-after-install.sh) sets --ozone-platform=x11
+# --disable-gpu before Electron starts. We keep disableHardwareAcceleration
+// here as a JS-level safety net for any launch path that bypasses the wrapper.
 if (process.platform === 'linux') {
-  const fs = require('node:fs');
-  const sandbox = path.join(process.resourcesPath, '..', 'chrome-sandbox');
-  let sandboxOk = false;
-  try {
-    const st = fs.statSync(sandbox);
-    sandboxOk = st.mode & 0o4000; // setuid bit
-  } catch (_) {}
-  if (!sandboxOk) {
-    // Chromium aborts before any JS runs when the SUID sandbox is misconfigured,
-    // so opt out of the sandbox entirely as a last-resort fallback. This keeps
-    // the app launchable on systems where the postinst couldn't set the helper
-    // setuid root (non-root install, missing postinst, portable run, etc.).
-    app.commandLine.appendSwitch('no-sandbox');
-    app.disableHardwareAcceleration();
-  }
+  app.disableHardwareAcceleration();
+  app.commandLine.appendSwitch('disable-gpu');
 }
 
 const DEFAULT_PORT = 18732;

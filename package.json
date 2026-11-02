@@ -51,6 +51,7 @@
       "main.js",
       "package.json",
       "build/icon.png",
+      "scripts/focustube-wrapper.sh",
       "node_modules"
     ],
     "extraResources": [
