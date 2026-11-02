@@ -28,9 +28,12 @@ if (process.platform === 'linux' && process.env.XDG_SESSION_TYPE === 'wayland') 
 }
 
 // On Ubuntu 24.04+ AppArmor restricts unprivileged user namespaces, so
-// Chromium needs the setuid chrome-sandbox helper. The deb postinst sets it
-// to 4755; if it's missing or not setuid, fall back to software rendering
-// (disable GPU) so the app still launches instead of crashing silently.
+// Chromium needs the setuid chrome-sandbox helper. The deb/rpm postinst sets
+// it to 4755; if it's missing or not setuid (e.g. postinst didn't run, or a
+// tarball/portable launch), fall back to --no-sandbox so the app still
+// launches instead of aborting with a SUID sandbox fatal. Hardware
+// acceleration is also disabled in that path to avoid GPU-process crashes on
+// Wayland/X11.
 if (process.platform === 'linux') {
   const fs = require('node:fs');
   const sandbox = path.join(process.resourcesPath, '..', 'chrome-sandbox');
@@ -40,6 +43,11 @@ if (process.platform === 'linux') {
     sandboxOk = st.mode & 0o4000; // setuid bit
   } catch (_) {}
   if (!sandboxOk) {
+    // Chromium aborts before any JS runs when the SUID sandbox is misconfigured,
+    // so opt out of the sandbox entirely as a last-resort fallback. This keeps
+    // the app launchable on systems where the postinst couldn't set the helper
+    // setuid root (non-root install, missing postinst, portable run, etc.).
+    app.commandLine.appendSwitch('no-sandbox');
     app.disableHardwareAcceleration();
   }
 }
@@ -458,6 +466,7 @@ if (!gotLock) {
       // hardware acceleration disabled so the app still opens.
       if (process.platform === 'linux' && !launchAttempted) {
         launchAttempted = true;
+        app.commandLine.appendSwitch('no-sandbox');
         app.disableHardwareAcceleration();
         app.whenReady().then(async () => {
           try {

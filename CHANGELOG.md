@@ -3,6 +3,20 @@
 All notable changes to **FocusTube** are documented here. Adheres loosely to
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Semver until 1.0: 0.x.
 
+## [2.8.1] - 2026-11-02
+
+### Fixed
+
+- **Desktop app won't launch on Linux after apt/rpm install.** The Chromium
+  SUID sandbox helper (`chrome-sandbox`) must be owned by root with mode 4755
+  on Linux, or Chromium aborts before the app's JS ever runs. The deb postinst
+  already set this; now the rpm postinst does the same, and the desktop shell
+  additionally falls back to `--no-sandbox` (with hardware acceleration
+  disabled) when the setuid helper is missing or misconfigured, so FocusTube
+  opens on Ubuntu, Fedora/RHEL and other Linux distros even if the postinst
+  couldn't set the helper. macOS and Windows were never affected and keep
+  working as before.
+
 ## [2.8.0] - 2026-11-01
 
 ### Added
