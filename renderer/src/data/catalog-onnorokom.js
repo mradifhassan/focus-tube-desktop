@@ -12295,7 +12295,7 @@ export const ONNOROKOM = {
     },
 {
       "id": "Math_StraightLine_3.1",
-      "title": "Math Straight Line 3.1 (স্থানাঙ্ক系統 ও দূরত্ব)",
+      "title": "Math Straight Line 3.1 (স্থানাঙ্ক ও দূরত্ব)",
       "videoCount": 7,
       "thumbnail": "https://i.ytimg.com/vi/JMmGMISn5GM/hqdefault.jpg",
       "updatedText": "Updated 1 week ago",
