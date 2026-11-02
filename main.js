@@ -21,13 +21,11 @@ const { autoUpdater } = require('electron-updater');
 // on some Ubuntu/Wayland setups), fall back to software rendering entirely so
 // the app at least launches.
 if (process.platform === 'linux' && process.env.XDG_SESSION_TYPE === 'wayland') {
-  app.commandLine.appendSwitch('ozone-platform', 'x11');
-  // Disable GPU acceleration on Wayland to avoid the GPU-process segfault
-  // that occurs on some Ubuntu/Wayland configurations even with XWayland.
   app.disableHardwareAcceleration();
-  // If XWayland routing still fails to create a window (XGetWindowAttributes
-  // error), fall back to disabling the Ozone platform feature entirely so
-  // Chromium uses plain X11 without the Wayland abstraction layer.
+  // Try XWayland first (ozone-platform=x11). If that fails to create a window
+  // under this Wayland setup (XGetWindowAttributes error), fall back to
+  // native Wayland (ozone-platform=wayland).
+  app.commandLine.appendSwitch('ozone-platform', 'x11');
   app.commandLine.appendSwitch('disable-features', 'UseOzonePlatform');
 }
 
