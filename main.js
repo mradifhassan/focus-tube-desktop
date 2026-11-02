@@ -25,6 +25,10 @@ if (process.platform === 'linux' && process.env.XDG_SESSION_TYPE === 'wayland') 
   // Disable GPU acceleration on Wayland to avoid the GPU-process segfault
   // that occurs on some Ubuntu/Wayland configurations even with XWayland.
   app.disableHardwareAcceleration();
+  // If XWayland routing still fails to create a window (XGetWindowAttributes
+  // error), fall back to disabling the Ozone platform feature entirely so
+  // Chromium uses plain X11 without the Wayland abstraction layer.
+  app.commandLine.appendSwitch('disable-features', 'UseOzonePlatform');
 }
 
 // On Ubuntu 24.04+ AppArmor restricts unprivileged user namespaces, so
