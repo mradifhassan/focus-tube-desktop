@@ -58,7 +58,7 @@ class FreeTubeApp {
     this._ytPlayer = null;
     this._ytApiPromise = null;
 
-    this.dataCache = this.loadCatalog();
+    this.dataCache = {};
     this.root = document.getElementById('root');
 
     // Memoization caches — invalidated via _dataRevision whenever the catalog,
@@ -96,9 +96,20 @@ class FreeTubeApp {
   // ============================================================================
   // APP INIT
   // ============================================================================
-  init() {
+  async init() {
     this.render();
     this.setupEventListeners();
+    // Hydrate the catalog asynchronously after first paint so the app boots
+    // immediately instead of blocking on a large JSON.parse of the full catalog.
+    try {
+      const catalog = await this.loadCatalogAsync();
+      this.dataCache = catalog;
+      this.bumpDataRevision();
+      // Re-render now that the full catalog is available (grids will populate).
+      this.render();
+    } catch (err) {
+      console.error('Failed to load catalog:', err);
+    }
     this.warmRelatedEngines();
     if (!this.isolatedVideoId) {
       this.subscribedChannels.forEach(ch => this.fetchLiveChannelData(ch.id));

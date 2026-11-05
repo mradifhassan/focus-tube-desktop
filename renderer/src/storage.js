@@ -33,22 +33,37 @@ export const storageMixin = {
     this.bumpDataRevision();
   },
 
+  // Synchronous stub used at construction time so the app boots immediately
+  // without blocking the main thread on a large JSON.parse of the full catalog.
+  // The real catalog is hydrated asynchronously via loadCatalogAsync().
   loadCatalog() {
-    // Same version guard as loadChannels() — belt-and-suspenders in case call order
-    // ever changes. If the cached catalog predates the current CATALOG_VERSION,
-    // ignore it and rebuild fresh from the (fixed/updated) BUILTIN_CATALOG.
+    return {};
+  },
+
+  // Hydrate dataCache asynchronously after first paint. Reads from localStorage
+  // cache if it's fresh (matches CATALOG_VERSION), otherwise falls back to the
+  // built-in BUILTIN_CATALOG. Resolves with the catalog object so callers can
+  // assign it to this.dataCache and bump the data revision.
+  async loadCatalogAsync() {
+    let catalog = {};
+
     const cachedVersion = localStorage.getItem('yt_catalog_version');
-    if (cachedVersion !== String(CATALOG_VERSION)) {
-      localStorage.removeItem('yt_catalog_cache');
-      localStorage.setItem('yt_catalog_version', String(CATALOG_VERSION));
-      return JSON.parse(JSON.stringify(BUILTIN_CATALOG));
+    if (cachedVersion === String(CATALOG_VERSION)) {
+      const saved = localStorage.getItem('yt_catalog_cache');
+      if (saved) {
+        try { catalog = JSON.parse(saved); } catch (e) { catalog = {}; }
+      }
     }
 
-    const saved = localStorage.getItem('yt_catalog_cache');
-    if (saved) {
-      try { return JSON.parse(saved); } catch (e) {}
+    if (!catalog || Object.keys(catalog).length === 0) {
+      catalog = JSON.parse(JSON.stringify(BUILTIN_CATALOG));
+      try {
+        localStorage.setItem('yt_catalog_cache', JSON.stringify(catalog));
+        localStorage.setItem('yt_catalog_version', String(CATALOG_VERSION));
+      } catch (e) {}
     }
-    return JSON.parse(JSON.stringify(BUILTIN_CATALOG));
+
+    return catalog;
   },
 
   saveCatalog() {

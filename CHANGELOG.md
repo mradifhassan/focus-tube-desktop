@@ -3,6 +3,24 @@
 All notable changes to **FocusTube** are documented here. Adheres loosely to
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Semver until 1.0: 0.x.
 
+## [2.9.0] - 2026-11-05
+
+### Changed
+
+- **Replaced AloronXYZ channel with Logical Beliefs.** Removed AloronXYZ (HSC &
+  Admission) and added **Logical Beliefs** (@logicalbelief1439), a mathematics
+  channel based on the Bangladeshi curriculum, with 87 videos across 7 playlists:
+  Integral Calculus (25), Idea of Function (12), Real Numbers (9),
+  Miscellaneous Integration (6), Statics (19), Limit (11), Permutation (6), and
+  Basic Trigonometry (3).
+- **Removed like/dislike/share buttons** from the watch page — they had no
+  backend function and served no purpose in a distraction-free client.
+- **Deferred catalog hydration.** The full video catalog is now loaded
+  asynchronously after first paint instead of blocking the main thread on
+  startup, improving time-to-interactive on cold launches.
+- `package.json` and `README.md` descriptions updated to reflect the new
+  channel lineup.
+
 ## [2.8.2] - 2026-11-02
 
 ### Added

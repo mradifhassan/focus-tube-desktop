@@ -75,6 +75,6 @@ export const seoMixin = {
       return;
     }
 
-    this.setDocumentMeta(SITE_TITLE, 'FocusTube is a free, distraction-free YouTube client built for HSC students in Bangladesh. Browse curated educational videos from OnnoRokom Pathshala, Alchemy, AloronXYZ, and One Hour Classroom — no ads, no recommendations, just focused learning.');
+    this.setDocumentMeta(SITE_TITLE, 'FocusTube is a free, distraction-free YouTube client built for HSC students in Bangladesh. Browse curated educational videos from OnnoRokom Pathshala, Alchemy, and One Hour Classroom — no ads, no recommendations, just focused learning.');
   },
 };

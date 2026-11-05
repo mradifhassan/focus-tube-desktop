@@ -21,4 +21,7 @@
 // v22 -> v23: added OnnoRokom Math chapters — Circle (Lectures 1 & 2, 15
 // videos), Straight Line (3.1–3.8, 43 videos), Matrix (8 videos),
 // Determinant (6 videos), Vector (17 videos) = 76 videos across 12 playlists.
-export const CATALOG_VERSION = 23;
+// v23 -> v24: replaced AloronXYZ channel with Logical Beliefs (87 videos,
+// 7 playlists: Integral Calculus, Idea of Function, Real Numbers,
+// Miscellaneous Integration, Statics, Limit, Permutation, Basic Trigonometry).
+export const CATALOG_VERSION = 24;

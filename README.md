@@ -12,7 +12,7 @@
 [![Downloads](https://img.shields.io/github/downloads/mradifhassan/focus-tube-desktop/total)](https://github.com/mradifhassan/focus-tube-desktop/releases)
 
 No ads. No algorithmic recommendations. No comments. Just curated HSC curriculum videos from
-[OnnoRokom Pathshala](https://www.youtube.com/@onnorokompathshala), Alchemy, AloronXYZ, and One Hour Classroom — wrapped in a clean desktop window.
+[OnnoRokom Pathshala](https://www.youtube.com/@onnorokompathshala), Alchemy, Logical Beliefs, and One Hour Classroom — wrapped in a clean desktop window.
 
 *Built with Electron (desktop) and Capacitor (Android). A sibling of the [FocusTube web app](https://github.com/mradifhassan/focus-tube).*
 
@@ -24,11 +24,11 @@ No ads. No algorithmic recommendations. No comments. Just curated HSC curriculum
 
 ## Features
 
-- **Curated distraction-free catalog** — 998+ hand-picked HSC videos and 60 playlists bundled offline; nothing is algorithmically recommended.
+- **Curated distraction-free catalog** — 1,000+ hand-picked HSC videos and 67 playlists bundled offline; nothing is algorithmically recommended.
 - **Native app everywhere** — installs as a `.deb` (Linux), `.exe` installer (Windows), `.dmg` (macOS), or `.apk` (Android); Debian/Ubuntu launches from the app menu with `Categories=Education`.
 - **Privacy shield** — Invidious instances for channel metadata, `youtube-nocookie.com` embeds, no tracking cookies, no account.
 - **Playlist autoplay** — a native-style queue with repeat / shuffle / autoplay while you study.
-- **Offline-first catalogs** — the full OnnoRokom / Alchemy / AloronXYZ / One Hour Classroom indexes ship with the app and render instantly; only video playback and Live channel fetch need the network.
+- **Offline-first catalogs** — the full OnnoRokom / Alchemy / Logical Beliefs / One Hour Classroom indexes ship with the app and render instantly; only video playback and Live channel fetch need the network.
 - **Search & filter** — filter the feed by category (science, technology, recently added) and search the full catalog.
 - **Isolated video mode** — open any video truly alone, with no suggestions or feed.
 

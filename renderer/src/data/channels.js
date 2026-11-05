@@ -26,24 +26,6 @@ export const CODEBASE_SUBSCRIBED_CHANNELS = [
     description: "Science, Philosophy & Thought-provoking Bengali video essays and documentaries."
   },
   {
-    id: "UCePPWrO7cZNtkOuiN7G4pMg",
-    url: "https://www.youtube.com/channel/UCePPWrO7cZNtkOuiN7G4pMg",
-    name: "AloronXYZ (HSC & Admission)- Mottasin Pahlovi",
-    handle: "@aloronxyz",
-    avatarColor: "bg-amber-600",
-    initials: "An",
-    subscriberCount: "122K",
-    description: `I am Mottasin Pahlovi.
-
-I am the managing director of Mpbian IT and cofounder of Infinty publications.
-
-I tought math , chemistry , physics more than 10lac+ hsc and admission candidates in udvash  Engineering admission programme till 2024.
-Besides more than 50k private batch students finished academic and admission preparation with me in recent  years.
-Earlier I uploaded all my videos on "Mottasin Pahlovi BUETian" youtube channel(with more than 1.4 million subscribers ). In that channel i upload math related videoes of every classes including jobs. So, hsc and admission students donot find their essential content easily in that channel. So, i opened a this channel.
-
-In this channel you can take preparation of hsc as well as admission freely.`
-  },
-  {
     id: "UCRmXGgiNjFfBs-t8LvF74Bw",
     url: "https://www.youtube.com/@onehourclassroom1723",
     name: "One Hour Classroom",
@@ -52,5 +34,15 @@ In this channel you can take preparation of hsc as well as admission freely.`
     initials: "OHC",
     subscriberCount: "12.8K",
     description: "",
+  },
+  {
+    id: "logicalbeliefs1439",
+    url: "https://www.youtube.com/@logicalbelief1439",
+    name: "Logical Beliefs",
+    handle: "@logicalbelief1439",
+    avatarColor: "bg-indigo-600",
+    initials: "LB",
+    subscriberCount: "",
+    description: "Mathematics education based on Bangladeshi curriculum.",
   }
 ];
