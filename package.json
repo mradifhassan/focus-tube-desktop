@@ -1,7 +1,7 @@
 {
   "name": "focus-tube-desktop",
   "productName": "FocusTube",
-  "version": "2.9.0",
+  "version": "2.9.1",
   "description": "FocusTube — a free, distraction-free YouTube desktop client built for HSC students in Bangladesh. Curated educational videos from OnnoRokom Pathshala, Alchemy, Logical Beliefs, and One Hour Classroom. No ads, no algorithmic recommendations.",
   "main": "main.js",
   "author": "Muhammad Radif Hassan <d7c855c924c89ceb550e06686d0ed8@duck.com>",

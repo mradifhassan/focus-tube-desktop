@@ -3,23 +3,46 @@
 All notable changes to **FocusTube** are documented here. Adheres loosely to
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Semver until 1.0: 0.x.
 
-## [2.9.0] - 2026-11-05
+## [2.9.1] - 2026-11-06
+
+### Added
+
+- **OnnoRokom Pathshala Math playlists.** Added 49 new videos and 5 new playlists
+  covering the HSC Higher Mathematics curriculum:
+  - **Probability (সম্ভাবনা)** — 15 videos: general discussion, sample space,
+    simple calculation problems, addition rule, complementary events, probabilities
+    regarding numbers and series, binomial distribution, card problems, conditional
+    probability, random examples, famous problems, real-life applications.
+  - **Measures of Dispersion (বিস্তার-পরিমাপ)** — 13 videos: mean, median, mode,
+    concept of dispersion, range & coefficient, quartile deviation, mean deviation,
+    standard deviation, variance, coefficient of variation, real-life problems.
+  - **Trigonometry & Inverse Circular Functions (ত্রিকোণমিতি)** — 10 videos:
+    trigonometric equations (parts 1–4), inverse circular functions (parts 1–6).
+  - **Linear Programming (যোগ্রাশ্রয়ী প্রোগ্রামিং)** — 6 videos: introduction,
+    mathematical problems (parts 1–5).
+  - **Modulus & Real Numbers (মডুলাস ও বাস্তব সংখ্যা)** — 5 videos: modulus,
+    solutions, important problems, axioms, superior/inferior limits.
 
 ### Changed
 
-- **Replaced AloronXYZ channel with Logical Beliefs.** Removed AloronXYZ (HSC &
-  Admission) and added **Logical Beliefs** (@logicalbelief1439), a mathematics
-  channel based on the Bangladeshi curriculum, with 87 videos across 7 playlists:
-  Integral Calculus (25), Idea of Function (12), Real Numbers (9),
-  Miscellaneous Integration (6), Statics (19), Limit (11), Permutation (6), and
-  Basic Trigonometry (3).
-- **Removed like/dislike/share buttons** from the watch page — they had no
-  backend function and served no purpose in a distraction-free client.
-- **Deferred catalog hydration.** The full video catalog is now loaded
-  asynchronously after first paint instead of blocking the main thread on
-  startup, improving time-to-interactive on cold launches.
-- `package.json` and `README.md` descriptions updated to reflect the new
-  channel lineup.
+- **Replaced AloronXYZ channel.** Removed AloronXYZ (HSC & Admission) and added
+  Logical Beliefs (@logicalbelief1439), a mathematics channel based on the
+  Bangladeshi curriculum.
+- **Added 87 new videos across 7 playlists.** Integral Calculus (25), Idea of
+  Function (12), Real Numbers (9), Miscellaneous Integration (6), Statics (19),
+  Limit (11), Permutation (6), Basic Trigonometry (3).
+- **Removed like/dislike/share buttons.** These had no backend function on the
+  watch page; removed for a cleaner distraction-free UI.
+- **Deferred catalog loading.** The full video catalog now loads asynchronously
+  after first paint instead of blocking the main thread on startup, improving
+  time-to-interactive.
+- **Bumped CATALOG_VERSION to 25**, so existing users' localStorage caches
+  auto-refresh.
+
+### Fixed
+
+- **Version not showing 2.9.0.** Latest version is now 2.9.1; all version
+  references in README.md, package.json description, and CHANGELOG.md updated.
 
 ## [2.8.2] - 2026-11-02
 

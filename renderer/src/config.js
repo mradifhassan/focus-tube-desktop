@@ -18,10 +18,8 @@
 // v17 -> v18: added OnnoRokom "Application Oriented Chemistry" playlist (19 videos).
 // v18 -> v19: added OnnoRokom "Qualitative Chemistry" playlist (34 videos).
 // v19 -> v20: added OnnoRokom "Chemical Changes" (18) + "Quantitative Chemistry" (15) playlists.
-// v22 -> v23: added OnnoRokom Math chapters — Circle (Lectures 1 & 2, 15
-// videos), Straight Line (3.1–3.8, 43 videos), Matrix (8 videos),
-// Determinant (6 videos), Vector (17 videos) = 76 videos across 12 playlists.
-// v23 -> v24: replaced AloronXYZ channel with Logical Beliefs (87 videos,
-// 7 playlists: Integral Calculus, Idea of Function, Real Numbers,
-// Miscellaneous Integration, Statics, Limit, Permutation, Basic Trigonometry).
-export const CATALOG_VERSION = 24;
+// v24 -> v25: replaced AloronXYZ channel with Logical Beliefs (remote v2.9.0)
+// and added 5 OnnoRokom Math playlists — Probability (15), Measures of
+// Dispersion (13), Trigonometry & Inverse Circular Functions (10), Linear
+// Programming (6), Modulus & Real Numbers (5) = 49 videos across 5 playlists.
+export const CATALOG_VERSION = 25;
