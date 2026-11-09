@@ -97,19 +97,6 @@ export const watchViewMixin = {
               </button>
             </div>
 
-            <div class="flex items-center gap-2">
-              <div class="flex items-center bg-[#272727] rounded-full overflow-hidden">
-                <button class="px-4 py-2 text-xs font-medium hover:bg-[#3f3f3f] flex items-center gap-1.5 border-r border-[#3f3f3f]">
-                  &#128077; Like
-                </button>
-                <button class="px-3 py-2 text-xs font-medium hover:bg-[#3f3f3f]">&#128078;</button>
-              </div>
-              
-              <button class="px-4 py-2 bg-[#272727] hover:bg-[#3f3f3f] rounded-full text-xs font-medium flex items-center gap-1.5">
-                Share
-              </button>
-            </div>
-
           </div>
 
           <!-- DESCRIPTION BOX -->

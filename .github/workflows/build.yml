@@ -263,11 +263,25 @@ jobs:
       contents: read
       pages: write
       id-token: write
+      actions: write
     concurrency:
       group: github-pages
       cancel-in-progress: true
     steps:
       - uses: actions/checkout@v4
+
+      - name: Remove stale github-pages artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # deploy-pages@v4 fails if more than one artifact named "github-pages"
+          # exists for this repository (e.g. from a previous run/retry). Remove
+          # any stale ones before uploading the fresh build.
+          gh api -X GET "/repos/$GITHUB_REPOSITORY/actions/artifacts?per_page=100" \
+            --jq '.artifacts[] | select(.name == "github-pages") | .id' 2>/dev/null | \
+          while read -r id; do
+            [ -n "$id" ] && gh api -X DELETE "/repos/$GITHUB_REPOSITORY/actions/artifacts/$id"
+          done
 
       - name: Install repo tooling
         run: sudo apt-get update && sudo apt-get install -y dpkg-dev apt-utils createrepo-c
